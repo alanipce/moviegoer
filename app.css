@@ -1,0 +1,28 @@
+body {
+    background: #eee;
+}
+
+.container {
+    max-width: 1028px;
+    margin: 0 auto;
+}
+
+#movie-showcase {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+
+#movie-showcase .movie {
+    background: green;
+    border-radius: 50%;
+
+    /* Hack to maintain 1:1 aspect ratio with dynamic element width. Works due to the padding's percentages calculated from element width. */
+    padding-bottom: 100%;
+}
+
+ul#movie-showcase {
+    list-style-type: none;
+    padding: 0;
+}
+
