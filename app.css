@@ -9,16 +9,7 @@ body {
 
 #movie-showcase {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10px;
-}
-
-#movie-showcase .movie {
-    background: green;
-    border-radius: 50%;
-
-    /* Hack to maintain 1:1 aspect ratio with dynamic element width. Works due to the padding's percentages calculated from element width. */
-    padding-bottom: 100%;
+    grid-template-columns: repeat(35, 30px);
 }
 
 ul#movie-showcase {
@@ -26,3 +17,39 @@ ul#movie-showcase {
     padding: 0;
 }
 
+#movie-showcase .movie-listing {
+    position: relative;
+    /* Hack to maintain 1:1 aspect ratio with dynamic element width. Works due to the padding's percentages calculated from element width. */
+    padding-bottom: 100%;
+
+    grid-row: auto / span 6;
+    grid-column: auto / span 6;
+}
+
+#movie-showcase .movie-listing.recommended {
+    grid-row: auto / span 8;
+    grid-column: auto / span 8;
+}
+
+#movie-showcase .movie-listing .movie-content {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    right: 1em;
+    bottom: 1em;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background: darkgray;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+#movie-showcase .movie-listing .movie-content img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+}
