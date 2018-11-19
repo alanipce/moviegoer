@@ -30,26 +30,29 @@
     movies.forEach((m) => console.log(m.title));
 
 
-    const showcaseElement = document.getElementById("movie-showcase");
-    movies.forEach((m) => {
-        const movieItemElement = document.createElement("li");
-        
-        if (m.isRecommended()) {
-            movieItemElement.classList.add("movie-listing", "recommended");
-        } else {
-            movieItemElement.classList.add("movie-listing");
-        }
+    //const movieSelector = document.getElementById("movie-selector");
+    // movies.forEach((m) => {
+    //     const movieOption = document.createElement("div");
+    //     movieOption.classList.add("movie-option");
 
+    //     if (m.isRecommended()) {
+    //         movieOption.classList.add("recommended");
+    //     }
 
-        const movieContentElement = document.createElement("div");
-        movieContentElement.classList.add("movie-content");
+    //     const movieContent = document.createElement("div");
+    //     movieContent.classList.add("movie-content");
 
-        const movieArtwork = document.createElement("img");
-        movieArtwork.src = m.artwork;
-        movieArtwork.alt = `${m.title} movie artwork`;
+    //     const movieRadio = document.createElement()
 
-        movieContentElement.appendChild(movieArtwork);
-        movieItemElement.appendChild(movieContentElement);
-        showcaseElement.appendChild(movieItemElement);
-    });
+    //     const movieContentElement = document.createElement("div");
+    //     movieContentElement.classList.add("movie-content");
+
+    //     const movieArtwork = document.createElement("img");
+    //     movieArtwork.src = m.artwork;
+    //     movieArtwork.alt = `${m.title} movie artwork`;
+
+    //     movieContentElement.appendChild(movieArtwork);
+    //     movieItemElement.appendChild(movieContentElement);
+    //     showcaseElement.appendChild(movieItemElement);
+    // });
 })();

@@ -7,49 +7,96 @@ body {
     margin: 0 auto;
 }
 
-#movie-showcase {
-    display: grid;
-    grid-template-columns: repeat(35, 30px);
+.movie-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-ul#movie-showcase {
-    list-style-type: none;
+.movie-option {
+    position: relative;
+    box-sizing: content-box;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    border-radius: 50%;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1);
+}
+
+.movie-option.recommended {
+    width: 180px;
+    height: 180px;
+}
+
+.movie-option:hover, .movie-option:focus-within {
+    transform: scale(1.2);
+}
+
+.movie-option::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    border-radius: 50%;
+    width: calc(100% - 10px);
+    height: calc(100% - 20px);
+    background: #000;
+    box-shadow: 0 0 12px 6px #000;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1)
+        opacity 0.4s cubic-bezier(0, 0, 0.3, 1);
+    opacity: 0.4;
+}
+
+.movie-option:hover::before, .movie-option:focus-within::before {
+    transform: translateY(12px);
+    opacity: 0.2;
+}
+
+.movie-option__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.movie-option__input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
     padding: 0;
 }
 
-#movie-showcase .movie-listing {
-    position: relative;
-    /* Hack to maintain 1:1 aspect ratio with dynamic element width. Works due to the padding's percentages calculated from element width. */
-    padding-bottom: 100%;
-
-    grid-row: auto / span 6;
-    grid-column: auto / span 6;
-}
-
-#movie-showcase .movie-listing.recommended {
-    grid-row: auto / span 8;
-    grid-column: auto / span 8;
-}
-
-#movie-showcase .movie-listing .movie-content {
+.movie-option__label {
     position: absolute;
-    top: 1em;
-    left: 1em;
-    right: 1em;
-    bottom: 1em;
-    color: black;
-    text-align: center;
-    border-radius: 50%;
-    overflow: hidden;
-    background: darkgray;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-}
-
-#movie-showcase .movie-listing .movie-content img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
     height: 100%;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: transparent;
+    text-align: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.movie-option__input:checked + .movie-option__label {
+    border: 5px solid rgb(78, 228, 111);
+}
+
+.movie-option__artwork {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 100%;
+    z-index: 1;
 }
