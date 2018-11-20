@@ -15,7 +15,7 @@ class MovieListing extends JSXComponent {
         const inputId = this.inputId;
         
         return (
-            <div class={`movie-option${movie.isRecommended()? ' recommended' : ''}`}>
+            <div class={`movie-option${movie.isRecommended? ' recommended' : ''}`}>
                 <div class="movie-option__container">
                     <input class="movie-option__input" id={inputId} type="radio" name="movie-selection" checked={isSelected} data-onchange={this.handleSelectionChange}/>
                     <label class="movie-option__label" for={inputId} data-onclick={this.handleSelectionChange}>{movie.title}</label>

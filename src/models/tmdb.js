@@ -22,10 +22,16 @@ const TMDb = {
                 const backdropResourceBaseUrl = values[1];
 
                 return json.results.map((movieJSON) => {
-                    const title = movieJSON.title;
-                    const artworkUrl = (movieJSON.backdrop_path) ? _buildAbsoluteUrl(backdropResourceBaseUrl, movieJSON.backdrop_path) : null;
+                    const {
+                        title, 
+                        backdrop_path: backdropPath, 
+                        release_date: releaseDate, 
+                        vote_average: voteAverage
+                    } = movieJSON;
+                    
+                    const artworkUrl = (backdropPath) ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
 
-                    return new Movie(title, artworkUrl);
+                    return new Movie(title, artworkUrl, releaseDate, voteAverage);
                 })
             });
     },

@@ -19863,7 +19863,7 @@ class MovieListing_MovieListing extends jsx_default.a {
         const { movie, isSelected } = this.props;
         const inputId = this.inputId;
 
-        IncrementalDOM.elementOpen('div', null, null, 'class', `movie-option${movie.isRecommended() ? ' recommended' : ''}`);
+        IncrementalDOM.elementOpen('div', null, null, 'class', `movie-option${movie.isRecommended ? ' recommended' : ''}`);
         IncrementalDOM.elementOpen('div', null, null, 'class', 'movie-option__container');
         IncrementalDOM.elementVoid('input', null, null, 'id', inputId, 'checked', isSelected, 'data-onchange', this.handleSelectionChange, 'class', 'movie-option__input', 'type', 'radio', 'name', 'movie-selection');
         IncrementalDOM.elementOpen('label', null, null, 'for', inputId, 'data-onclick', this.handleSelectionChange, 'class', 'movie-option__label');
@@ -19938,24 +19938,40 @@ function getRandomInt(min, max) {
 function flipACoin() {
     return getRandomInt(0, 1);
 }
-// CONCATENATED MODULE: ./src/models/movie.js
-
-
-function Movie(title, artworkUrl) {
-    this.title = title;
-    this.artworkUrl = artworkUrl;
-}
-
-Movie.prototype.isRecommended = function () {
-    return true;
-};
-
-
-/* harmony default export */ var movie = (Movie);
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
 var moment = __webpack_require__(0);
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
+// CONCATENATED MODULE: ./src/models/movie.js
+
+
+
+function determineRecommendation(releaseDate, voteAverage) {
+    // Note: moment treats the current week from Sunday to Saturday, so sunday  is the start of the week
+    // Recommended rules: if released last week and has great ratings or is released this week it is recommended
+    const thisSunday = moment_default()().day(0);
+    const lastSunday = moment_default()().day(-7);
+
+    if (releaseDate.isAfter(thisSunday)) {
+        return true;
+    } else if (releaseDate.isBetween(lastSunday, thisSunday) && voteAverage > 6) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function Movie(title, artworkUrl, releaseDate, voteAverage) {
+    this.title = title;
+    this.artworkUrl = artworkUrl;
+    this.releaseDate = moment_default()(releaseDate);
+    this.voteAverage = voteAverage;
+
+    this.isRecommended = determineRecommendation(this.releaseDate, this.voteAverage);
+}
+
+
+/* harmony default export */ var movie = (Movie);
 // CONCATENATED MODULE: ./src/models/tmdb.js
 
 
@@ -19980,10 +19996,16 @@ const TMDb = {
             const backdropResourceBaseUrl = values[1];
 
             return json.results.map(movieJSON => {
-                const title = movieJSON.title;
-                const artworkUrl = movieJSON.backdrop_path ? _buildAbsoluteUrl(backdropResourceBaseUrl, movieJSON.backdrop_path) : null;
+                const {
+                    title,
+                    backdrop_path: backdropPath,
+                    release_date: releaseDate,
+                    vote_average: voteAverage
+                } = movieJSON;
 
-                return new movie(title, artworkUrl);
+                const artworkUrl = backdropPath ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
+
+                return new movie(title, artworkUrl, releaseDate, voteAverage);
             });
         });
     }
@@ -29255,7 +29277,7 @@ exports = module.exports = __webpack_require__(192)(false);
 
 
 // module
-exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(0.9);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 180px;\n  height: 180px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n", ""]);
+exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 200px;\n  height: 200px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n", ""]);
 
 // exports
 
