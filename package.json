@@ -13,7 +13,8 @@
 		"start": "http-server . -p 4000"
 	},
 	"dependencies": {
-		"metal-jsx": "^2.14.1"
+		"metal-jsx": "^2.14.1",
+		"moment": "^2.22.2"
 	},
 	"devDependencies": {
 		"babel-core": "^6.25.0",

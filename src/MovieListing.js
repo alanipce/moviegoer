@@ -19,7 +19,7 @@ class MovieListing extends JSXComponent {
                 <div class="movie-option__container">
                     <input class="movie-option__input" id={inputId} type="radio" name="movie-selection" checked={isSelected} data-onchange={this.handleSelectionChange}/>
                     <label class="movie-option__label" for={inputId} data-onclick={this.handleSelectionChange}>{movie.title}</label>
-                    <img class="movie-option__artwork" src={movie.artworkUrl} alt="Movie artwork" />
+                    {movie.artworkUrl && <img class="movie-option__artwork" src={movie.artworkUrl} alt="Movie artwork" />}
                 </div>
             </div>
         );
