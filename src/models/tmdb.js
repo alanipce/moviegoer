@@ -6,12 +6,17 @@ const apiKey = "0f07480086543adf4e6e3898c5c50c0f";
 const apiBaseUrl = "https://api.themoviedb.org/3";
 let config = null;
 
+// release type constants
+const RELEASE_TYPE_PREMIER = 1;
+const RELEASE_TYPE_LIMITED_THEATRICAL = 2;
+const RELEASE_TYPE_THEATRICAL = 3;
+const RELEASE_TYPE_DIGITAL = 4;
+const RELEASE_TYPE_PHYSICAL = 5;
+const RELEASE_TYPE_TV = 6;
+
 const TMDb = {
     fetchTheatricalReleases: function () {
-        const afterDate = moment().subtract(2, 'weeks').format("YYYY-MM-DD");
-        const beforeDate = moment().add(2, 'weeks').format("YYYY-MM-DD");
-
-        return Promise.all([_get("/discover/movie", {"primary_release_date.gte": afterDate, "primary_release_date.lte": beforeDate}), _fetchBackdropResourceBaseUrl()])
+        return Promise.all([_get("/discover/movie", {"with_release_type": `${RELEASE_TYPE_THEATRICAL}|${RELEASE_TYPE_LIMITED_THEATRICAL}`}), _fetchBackdropResourceBaseUrl()])
             .then((values) => {
                 const json = values[0];
                 const backdropResourceBaseUrl = values[1];

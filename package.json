@@ -9,6 +9,7 @@
 	},
 	"scripts": {
 		"build": "webpack --config webpack.config.js",
+		"watch": "npm run build -- --watch",
 		"postinstall": "npm run build",
 		"start": "http-server . -p 4000"
 	},

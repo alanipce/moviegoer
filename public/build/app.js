@@ -19965,12 +19965,17 @@ const apiKey = "0f07480086543adf4e6e3898c5c50c0f";
 const apiBaseUrl = "https://api.themoviedb.org/3";
 let config = null;
 
+// release type constants
+const RELEASE_TYPE_PREMIER = 1;
+const RELEASE_TYPE_LIMITED_THEATRICAL = 2;
+const RELEASE_TYPE_THEATRICAL = 3;
+const RELEASE_TYPE_DIGITAL = 4;
+const RELEASE_TYPE_PHYSICAL = 5;
+const RELEASE_TYPE_TV = 6;
+
 const TMDb = {
     fetchTheatricalReleases: function () {
-        const afterDate = moment_default()().subtract(2, 'weeks').format("YYYY-MM-DD");
-        const beforeDate = moment_default()().add(2, 'weeks').format("YYYY-MM-DD");
-
-        return Promise.all([_get("/discover/movie", { "primary_release_date.gte": afterDate, "primary_release_date.lte": beforeDate }), _fetchBackdropResourceBaseUrl()]).then(values => {
+        return Promise.all([_get("/discover/movie", { "with_release_type": `${RELEASE_TYPE_THEATRICAL}|${RELEASE_TYPE_LIMITED_THEATRICAL}` }), _fetchBackdropResourceBaseUrl()]).then(values => {
             const json = values[0];
             const backdropResourceBaseUrl = values[1];
 
@@ -20097,6 +20102,7 @@ class App_App extends jsx_default.a {
         IncrementalDOM.elementOpen("div");
         IncrementalDOM.text("Step 1: Select your movie");
         IncrementalDOM.elementClose("div");
+        iDOMHelpers.renderArbitrary(selectedMovieIndex != null && (IncrementalDOM.elementOpen("p"), iDOMHelpers.renderArbitrary(movies[selectedMovieIndex].title), IncrementalDOM.elementClose("p")));
         IncrementalDOM.elementClose("header");
         IncrementalDOM.elementOpen("main");
         IncrementalDOM.elementVoid(src_MovieSelector, null, null, "movies", movies, "selectedMovieIndex", selectedMovieIndex, "events", { movieSelected: this.handleMovieSelected });
@@ -29249,7 +29255,7 @@ exports = module.exports = __webpack_require__(192)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(0.9);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 180px;\n  height: 180px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option:hover::before, .movie-option:focus-within::before {\n  transform: translateY(12px);\n  opacity: 0.2; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n", ""]);
+exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(0.9);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 180px;\n  height: 180px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n", ""]);
 
 // exports
 

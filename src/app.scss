@@ -1,4 +1,5 @@
 body {
+    position: relative;
     background: #eee;
 }
 
@@ -34,6 +35,16 @@ body {
 
 .movie-option:hover, .movie-option:focus-within {
     transform: scale(1.2);
+
+    .movie-option__label {
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+    }
+
+    &::before {
+        transform: translateY(12px);
+        opacity: 0.2;
+    }
 }
 
 .movie-option::before {
@@ -50,11 +61,6 @@ body {
     transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1)
         opacity 0.4s cubic-bezier(0, 0, 0.3, 1);
     opacity: 0.4;
-}
-
-.movie-option:hover::before, .movie-option:focus-within::before {
-    transform: translateY(12px);
-    opacity: 0.2;
 }
 
 .movie-option__container {
@@ -78,7 +84,9 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     width: 100%;
     height: 100%;

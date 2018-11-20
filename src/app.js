@@ -28,6 +28,7 @@ class App extends JSXComponent {
                 <header>
                     <h1>moviegoer</h1>
                     <div>Step 1: Select your movie</div>
+                    {(selectedMovieIndex != null) && <p>{movies[selectedMovieIndex].title}</p>}
                 </header>
                 <main>
                     <MovieSelector movies={movies} selectedMovieIndex={selectedMovieIndex} events={{movieSelected: this.handleMovieSelected}} />
