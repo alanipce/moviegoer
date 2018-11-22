@@ -129,6 +129,7 @@ ol.multistep {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    counter-reset: multistep;
 }
 
 .multistep .step {
@@ -146,7 +147,8 @@ ol.multistep {
 
     &::before {
         box-sizing: border-box;
-        content: '';
+        counter-increment: multistep;
+        content: counter(multistep);
         position: absolute;
         top: 0;
         left: 50%;
@@ -156,6 +158,7 @@ ol.multistep {
         height: $step-indicator-size;
         border-radius: 50%;
         background: $step-indicator-color;
+        line-height: $step-indicator-size;
     }
 
     &.step__complete::before {
