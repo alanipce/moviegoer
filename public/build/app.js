@@ -19846,14 +19846,23 @@ class MultiStepIndicator extends jsx_default.a {
     render() {
         const { steps, currentStep } = this.props;
 
-        IncrementalDOM.elementOpen('ol');
-        iDOMHelpers.renderArbitrary(steps.map((s, i) => iDOMHelpers.jsxWrapper(function (_s$name, _ref) {
-            IncrementalDOM.elementOpen('li');
-            iDOMHelpers.renderArbitrary(_s$name);
-            iDOMHelpers.renderArbitrary(_ref);
-            return IncrementalDOM.elementClose('li');
-        }, [s.name, i === currentStep ? ' (current)' : ''])));
-        return IncrementalDOM.elementClose('ol');
+        IncrementalDOM.elementOpen("ol", null, null, "class", "multistep");
+        iDOMHelpers.renderArbitrary(steps.map((s, i) => {
+            let className = "step";
+
+            if (i < currentStep) {
+                className += " step__complete";
+            } else if (i === currentStep) {
+                className += " step__current";
+            }
+
+            return iDOMHelpers.jsxWrapper(function (_className, _s$name) {
+                IncrementalDOM.elementOpen("li", null, null, "class", _className);
+                iDOMHelpers.renderArbitrary(_s$name);
+                return IncrementalDOM.elementClose("li");
+            }, [className, s.name]);
+        }));
+        return IncrementalDOM.elementClose("ol");
     }
 }
 
@@ -29356,7 +29365,7 @@ exports = module.exports = __webpack_require__(192)(false);
 
 
 // module
-exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 200px;\n  height: 200px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n", ""]);
+exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 200px;\n  height: 200px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n\nol.multistep {\n  list-style-type: none; }\n\n.multistep {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  align-items: center;\n  justify-content: center; }\n\n.multistep .step {\n  position: relative;\n  display: block;\n  /* Give all steps the same width so computations to determine divider length work */\n  width: 75px;\n  padding-top: 60px;\n  margin-right: 50px;\n  text-align: center; }\n  .multistep .step:last-child {\n    margin-right: 0; }\n  .multistep .step::before {\n    box-sizing: border-box;\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 50%;\n    transform: translateX(-50%);\n    display: block;\n    width: 45px;\n    height: 45px;\n    border-radius: 50%;\n    background: lightgray; }\n  .multistep .step.step__complete::before {\n    background: green; }\n  .multistep .step.step__current::before {\n    background: darkgray; }\n  .multistep .step::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 22.5px;\n    left: calc(50% + 22.5px);\n    width: calc(100% - 45px + 50px);\n    height: 4px;\n    background: lightgray; }\n  .multistep .step.step__complete::after {\n    background: green; }\n  .multistep .step.step__current::after {\n    background: darkgray; }\n  .multistep .step:last-of-type::after {\n    display: none; }\n", ""]);
 
 // exports
 

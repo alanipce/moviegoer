@@ -5,8 +5,18 @@ class MultiStepIndicator extends JSXComponent {
         const {steps, currentStep} = this.props;
 
         return (
-            <ol>
-                {steps.map((s, i) => <li>{s.name} {(i===currentStep)? ' (current)' : ''}</li>)}
+            <ol class="multistep">
+                {steps.map((s, i) => {
+                    let className = "step";
+
+                    if (i < currentStep) {
+                        className += " step__complete";
+                    } else if (i === currentStep) {
+                        className += " step__current";
+                    }
+
+                    return <li class={className}>{s.name} </li>;
+                })}
             </ol>
         );
     }

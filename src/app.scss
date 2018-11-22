@@ -1,3 +1,10 @@
+$step-indicator-size: 45px;
+$step-indicator-interspace: 50px;
+$step-indicator-color: lightgray;
+$step-indicator-complete-color: green;
+$step-indicator-current-color: darkgray;
+$step-container-width: $step-indicator-size + 30px;
+
 body {
     position: relative;
     background: #eee;
@@ -110,4 +117,75 @@ body {
     transform: translateX(-50%);
     height: 100%;
     z-index: 1;
+}
+
+ol.multistep {
+    list-style-type: none;
+}
+
+.multistep {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.multistep .step {
+    position: relative;
+    display: block;
+    /* Give all steps the same width so computations to determine divider length work */
+    width: $step-container-width;
+    padding-top: $step-indicator-size + 15px;
+    margin-right: $step-indicator-interspace;
+    text-align: center;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &::before {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        width: $step-indicator-size;
+        height: $step-indicator-size;
+        border-radius: 50%;
+        background: $step-indicator-color;
+    }
+
+    &.step__complete::before {
+        background: $step-indicator-complete-color;
+    }
+
+    &.step__current::before {
+        background: $step-indicator-current-color;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: $step-indicator-size / 2;
+        left: calc(50% + #{$step-indicator-size / 2});
+        width: calc(100% - #{$step-indicator-size} + #{$step-indicator-interspace});
+        height: 4px;
+        background: $step-indicator-color;
+    }
+
+    &.step__complete::after {
+        background: $step-indicator-complete-color;
+    }
+
+    &.step__current::after {
+        background: $step-indicator-current-color;
+    }
+
+    &:last-of-type::after {
+        display: none;
+    }
 }
