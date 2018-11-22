@@ -10,11 +10,9 @@ class MovieSelector extends JSXComponent {
         const {movies, selectedMovieIndex} = this.props;
 
         return (
-            <form>
-                <div class="movie-selector">
-                    {movies.map((m, i) => <MovieListing movie={m} isSelected={i === selectedMovieIndex} events={{movieSelected: this.handleSelectedMovie}} />)}
-                </div>
-            </form>
+            <div class="movie-selector">
+                {movies.map((m, i) => <MovieListing movie={m} isSelected={i === selectedMovieIndex} events={{movieSelected: this.handleSelectedMovie}} />)}
+            </div>
         );
     }
 

@@ -4680,6 +4680,42 @@ exports.dom = dom;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Fragment = exports.JSXComponent = exports.Config = exports.validators = exports.DangerouslySetHTML = undefined;
+
+var _metalState = __webpack_require__(7);
+
+var _DangerouslySetHTML = __webpack_require__(166);
+
+var _DangerouslySetHTML2 = _interopRequireDefault(_DangerouslySetHTML);
+
+var _JSXComponent = __webpack_require__(11);
+
+var _JSXComponent2 = _interopRequireDefault(_JSXComponent);
+
+var _Fragment = __webpack_require__(187);
+
+var _Fragment2 = _interopRequireDefault(_Fragment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _JSXComponent2.default;
+exports.DangerouslySetHTML = _DangerouslySetHTML2.default;
+exports.validators = _metalState.validators;
+exports.Config = _metalState.Config;
+exports.JSXComponent = _JSXComponent2.default;
+exports.Fragment = _Fragment2.default;
+//# sourceMappingURL=jsx.js.map
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.EventHandler = exports.EventHandle = exports.EventEmitterProxy = exports.EventEmitter = undefined;
 
 var _EventEmitter = __webpack_require__(163);
@@ -4708,7 +4744,7 @@ exports.EventHandler = _EventHandler2.default;
 //# sourceMappingURL=events.js.map
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4744,7 +4780,7 @@ function getData(component) {
 //# sourceMappingURL=data.js.map
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4793,7 +4829,7 @@ exports.ComponentRenderer = _ComponentRenderer2.default;
 //# sourceMappingURL=component.js.map
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4825,7 +4861,7 @@ exports.State = _State2.default;
 //# sourceMappingURL=state.js.map
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -4852,7 +4888,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4913,42 +4949,6 @@ exports.globalEval = _globalEval2.default;
 exports.globalEvalStyles = _globalEvalStyles2.default;
 exports.default = _dom2.default;
 //# sourceMappingURL=dom.js.map
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Fragment = exports.JSXComponent = exports.Config = exports.validators = exports.DangerouslySetHTML = undefined;
-
-var _metalState = __webpack_require__(6);
-
-var _DangerouslySetHTML = __webpack_require__(166);
-
-var _DangerouslySetHTML2 = _interopRequireDefault(_DangerouslySetHTML);
-
-var _JSXComponent = __webpack_require__(11);
-
-var _JSXComponent2 = _interopRequireDefault(_JSXComponent);
-
-var _Fragment = __webpack_require__(187);
-
-var _Fragment2 = _interopRequireDefault(_Fragment);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _JSXComponent2.default;
-exports.DangerouslySetHTML = _DangerouslySetHTML2.default;
-exports.validators = _metalState.validators;
-exports.Config = _metalState.Config;
-exports.JSXComponent = _JSXComponent2.default;
-exports.Fragment = _Fragment2.default;
-//# sourceMappingURL=jsx.js.map
 
 /***/ }),
 /* 10 */
@@ -5157,7 +5157,7 @@ __webpack_require__(167);
 
 var _metal = __webpack_require__(1);
 
-var _metalComponent = __webpack_require__(5);
+var _metalComponent = __webpack_require__(6);
 
 var _metalComponent2 = _interopRequireDefault(_metalComponent);
 
@@ -6324,7 +6324,7 @@ if ((0, _metal.isServerSide)()) {
 	}
 }
 //# sourceMappingURL=incremental-dom.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 19 */
@@ -6340,7 +6340,7 @@ exports.clearChanges = clearChanges;
 exports.getChanges = getChanges;
 exports.trackChanges = trackChanges;
 
-var _data = __webpack_require__(4);
+var _data = __webpack_require__(5);
 
 /**
  * Clears the changes tracked so far.
@@ -6651,7 +6651,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _metalEvents = __webpack_require__(3);
+var _metalEvents = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6830,9 +6830,9 @@ var _children = __webpack_require__(20);
 
 var _changes = __webpack_require__(19);
 
-var _metalDom = __webpack_require__(8);
+var _metalDom = __webpack_require__(9);
 
-var _data = __webpack_require__(4);
+var _data = __webpack_require__(5);
 
 var _metal = __webpack_require__(1);
 
@@ -6840,7 +6840,7 @@ var _unused = __webpack_require__(185);
 
 var _incrementalDomAop = __webpack_require__(13);
 
-var _metalComponent = __webpack_require__(5);
+var _metalComponent = __webpack_require__(6);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7525,7 +7525,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _metal = __webpack_require__(1);
 
-var _metalState = __webpack_require__(6);
+var _metalState = __webpack_require__(7);
 
 var _metalState2 = _interopRequireDefault(_metalState);
 
@@ -19836,9 +19836,37 @@ exports.default = jsxRenderer_;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/metal-jsx/lib/all/jsx.js
-var jsx = __webpack_require__(9);
+var jsx = __webpack_require__(3);
 var jsx_default = /*#__PURE__*/__webpack_require__.n(jsx);
 
+// CONCATENATED MODULE: ./src/MultiStepIndicator.js
+
+
+class MultiStepIndicator extends jsx_default.a {
+    render() {
+        const { steps, currentStep } = this.props;
+
+        IncrementalDOM.elementOpen('ol');
+        iDOMHelpers.renderArbitrary(steps.map((s, i) => iDOMHelpers.jsxWrapper(function (_s$name, _ref) {
+            IncrementalDOM.elementOpen('li');
+            iDOMHelpers.renderArbitrary(_s$name);
+            iDOMHelpers.renderArbitrary(_ref);
+            return IncrementalDOM.elementClose('li');
+        }, [s.name, i === currentStep ? ' (current)' : ''])));
+        return IncrementalDOM.elementClose('ol');
+    }
+}
+
+MultiStepIndicator.PROPS = {
+    steps: {
+        value: []
+    },
+    currentStep: {
+        value: null
+    }
+};
+
+/* harmony default export */ var src_MultiStepIndicator = (MultiStepIndicator);
 // CONCATENATED MODULE: ./src/utility/uniqueid.js
 let autoIncrementingNumber = 0;
 /* harmony default export */ var uniqueid = (function (prefix = 'id') {
@@ -19903,13 +19931,11 @@ class MovieSelector_MovieSelector extends jsx_default.a {
     render() {
         const { movies, selectedMovieIndex } = this.props;
 
-        IncrementalDOM.elementOpen('form');
         IncrementalDOM.elementOpen('div', null, null, 'class', 'movie-selector');
         iDOMHelpers.renderArbitrary(movies.map((m, i) => iDOMHelpers.jsxWrapper(function (_m, _ref, _movieSelected) {
             return IncrementalDOM.elementVoid(src_MovieListing, null, null, 'movie', _m, 'isSelected', _ref, 'events', _movieSelected);
         }, [m, i === selectedMovieIndex, { movieSelected: this.handleSelectedMovie }])));
-        IncrementalDOM.elementClose('div');
-        return IncrementalDOM.elementClose('form');
+        return IncrementalDOM.elementClose('div');
     }
 
     handleSelectedMovie(e) {
@@ -19927,23 +19953,51 @@ MovieSelector_MovieSelector.PROPS = {
 };
 
 /* harmony default export */ var src_MovieSelector = (MovieSelector_MovieSelector);
-// CONCATENATED MODULE: ./src/utility/random.js
-function getRandomInt(min, max) {
-    min = Math.floor(min);
-    max = Math.ceil(max);
+// CONCATENATED MODULE: ./src/MovieStep.js
 
-    return min + Math.floor((max - min + 1) * Math.random());
-}
 
-function flipACoin() {
-    return getRandomInt(0, 1);
-}
+
+class MovieStep_MovieStep extends jsx_default.a {
+    created() {
+        this.handleMovieSelected = this.handleMovieSelected.bind(this);
+        this.handleMovieConfirmation = this.handleMovieConfirmation.bind(this);
+    }
+
+    render() {
+        const { movies, selectedMovieIndex } = this.props;
+
+        IncrementalDOM.elementOpen("form", null, null, "data-onsubmit", this.handleMovieConfirmation);
+        iDOMHelpers.renderArbitrary(selectedMovieIndex !== null && (IncrementalDOM.elementOpen("button", null, null, "type", "submit"), IncrementalDOM.text("Continue"), IncrementalDOM.elementClose("button")));
+        IncrementalDOM.elementVoid(src_MovieSelector, null, null, "movies", movies, "selectedMovieIndex", selectedMovieIndex, "events", { movieSelected: this.handleMovieSelected });
+        return IncrementalDOM.elementClose("form");
+    }
+
+    handleMovieConfirmation(event) {
+        event.preventDefault();
+        console.log("confirmed movie selection");
+        this.emit('movieConfirmed');
+    }
+
+    handleMovieSelected(payload) {
+        this.emit('movieSelected', payload);
+    }
+};
+
+MovieStep_MovieStep.PROPS = {
+    movies: {
+        value: []
+    },
+    selectedMovieIndex: {
+        value: null
+    }
+};
+
+/* harmony default export */ var src_MovieStep = (MovieStep_MovieStep);
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
 var moment = __webpack_require__(0);
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
 // CONCATENATED MODULE: ./src/models/movie.js
-
 
 
 function determineRecommendation(releaseDate, voteAverage) {
@@ -19973,7 +20027,6 @@ function Movie(title, artworkUrl, releaseDate, voteAverage) {
 
 /* harmony default export */ var movie = (Movie);
 // CONCATENATED MODULE: ./src/models/tmdb.js
-
 
 
 // namespace for The movie database utility methods
@@ -20098,9 +20151,15 @@ var app_default = /*#__PURE__*/__webpack_require__.n(app);
 
 
 
+
+const MOVIE_STEP = 0;
+const DATE_STEP = 1;
+const THEATRE_STEP = 2;
+
 class App_App extends jsx_default.a {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
+        this.handleMovieConfirmation = this.handleMovieConfirmation.bind(this);
     }
 
     async attached() {
@@ -20108,28 +20167,36 @@ class App_App extends jsx_default.a {
     }
 
     render() {
-        const { movies, selectedMovieIndex } = this.state;
+        const { movies, selectedMovieIndex, steps, currentStep } = this.state;
 
         if (movies === null) {
-            IncrementalDOM.elementOpen("p");
-            IncrementalDOM.text("Loading movie selections...");
-            return IncrementalDOM.elementClose("p");
+            IncrementalDOM.elementOpen('p');
+            IncrementalDOM.text('Loading movie selections...');
+            return IncrementalDOM.elementClose('p');
         }
 
-        IncrementalDOM.elementOpen("div", null, null, "class", "container");
-        IncrementalDOM.elementOpen("header");
-        IncrementalDOM.elementOpen("h1");
-        IncrementalDOM.text("moviegoer");
-        IncrementalDOM.elementClose("h1");
-        IncrementalDOM.elementOpen("div");
-        IncrementalDOM.text("Step 1: Select your movie");
-        IncrementalDOM.elementClose("div");
-        iDOMHelpers.renderArbitrary(selectedMovieIndex != null && (IncrementalDOM.elementOpen("p"), iDOMHelpers.renderArbitrary(movies[selectedMovieIndex].title), IncrementalDOM.elementClose("p")));
-        IncrementalDOM.elementClose("header");
-        IncrementalDOM.elementOpen("main");
-        IncrementalDOM.elementVoid(src_MovieSelector, null, null, "movies", movies, "selectedMovieIndex", selectedMovieIndex, "events", { movieSelected: this.handleMovieSelected });
-        IncrementalDOM.elementClose("main");
-        return IncrementalDOM.elementClose("div");
+        IncrementalDOM.elementOpen('div', null, null, 'class', 'container');
+        IncrementalDOM.elementOpen('header');
+        IncrementalDOM.elementOpen('h1');
+        IncrementalDOM.text('moviegoer');
+        IncrementalDOM.elementClose('h1');
+        IncrementalDOM.elementVoid(src_MultiStepIndicator, null, null, 'steps', steps, 'currentStep', currentStep);
+        iDOMHelpers.renderArbitrary(selectedMovieIndex != null && (IncrementalDOM.elementOpen('p'), iDOMHelpers.renderArbitrary(movies[selectedMovieIndex].title), IncrementalDOM.elementClose('p')));
+        IncrementalDOM.elementClose('header');
+        IncrementalDOM.elementOpen('main');
+        iDOMHelpers.renderArbitrary(currentStep === MOVIE_STEP && IncrementalDOM.elementVoid(src_MovieStep, null, null, 'movies', movies, 'selectedMovieIndex', selectedMovieIndex, 'events', { movieSelected: this.handleMovieSelected, movieConfirmed: this.handleMovieConfirmation }));
+        iDOMHelpers.renderArbitrary(currentStep === DATE_STEP && (IncrementalDOM.elementOpen('div'), IncrementalDOM.text('Second step'), IncrementalDOM.elementClose('div')));
+        iDOMHelpers.renderArbitrary(currentStep === THEATRE_STEP && (IncrementalDOM.elementOpen('div'), IncrementalDOM.text('Third step'), IncrementalDOM.elementClose('div')));
+        IncrementalDOM.elementClose('main');
+        return IncrementalDOM.elementClose('div');
+    }
+
+    navigateToDateStep() {
+        this.state.currentStep = DATE_STEP;
+    }
+
+    handleMovieConfirmation() {
+        this.navigateToDateStep();
     }
 
     handleMovieSelected(e) {
@@ -20143,6 +20210,18 @@ App_App.STATE = {
     },
     selectedMovieIndex: {
         value: null
+    },
+    steps: {
+        value: [{
+            name: "Movie"
+        }, {
+            name: "Date"
+        }, {
+            name: "Theatre"
+        }]
+    },
+    currentStep: {
+        value: 0
     }
 };
 
@@ -20648,7 +20727,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 157 */
@@ -20841,7 +20920,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(10)))
 
 /***/ }),
 /* 158 */
@@ -21511,7 +21590,7 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _metal = __webpack_require__(1);
 
-var _metalEvents = __webpack_require__(3);
+var _metalEvents = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -23243,7 +23322,7 @@ var _JSXComponent = __webpack_require__(11);
 
 var _JSXComponent2 = _interopRequireDefault(_JSXComponent);
 
-var _metalState = __webpack_require__(6);
+var _metalState = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23375,7 +23454,7 @@ scope.iDOMHelpers.renderArbitrary = function (child) {
 
 exports.default = scope.iDOMHelpers;
 //# sourceMappingURL=iDOMHelpers.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 168 */
@@ -23844,7 +23923,7 @@ __webpack_require__(18);
 
 var _changes = __webpack_require__(19);
 
-var _data = __webpack_require__(4);
+var _data = __webpack_require__(5);
 
 var _children = __webpack_require__(20);
 
@@ -23852,7 +23931,7 @@ var _patch2 = __webpack_require__(174);
 
 var _render = __webpack_require__(24);
 
-var _metalComponent = __webpack_require__(5);
+var _metalComponent = __webpack_require__(6);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -25619,9 +25698,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.getPatchingComponent = getPatchingComponent;
 exports.patch = patch;
 
-var _metalDom = __webpack_require__(8);
+var _metalDom = __webpack_require__(9);
 
-var _data = __webpack_require__(4);
+var _data = __webpack_require__(5);
 
 var _render = __webpack_require__(24);
 
@@ -26672,7 +26751,7 @@ var _domData = __webpack_require__(14);
 
 var _domData2 = _interopRequireDefault(_domData);
 
-var _metalEvents = __webpack_require__(3);
+var _metalEvents = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26752,7 +26831,7 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _dom = __webpack_require__(2);
 
-var _metalEvents = __webpack_require__(3);
+var _metalEvents = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27231,9 +27310,9 @@ exports.convertListenerNamesToFns = convertListenerNamesToFns;
 
 var _metal = __webpack_require__(1);
 
-var _metalDom = __webpack_require__(8);
+var _metalDom = __webpack_require__(9);
 
-var _metalComponent = __webpack_require__(5);
+var _metalComponent = __webpack_require__(6);
 
 var _incrementalDomAop = __webpack_require__(13);
 
@@ -27427,7 +27506,7 @@ var _metal = __webpack_require__(1);
 
 var _sync = __webpack_require__(183);
 
-var _metalDom = __webpack_require__(8);
+var _metalDom = __webpack_require__(9);
 
 var _ComponentDataManager = __webpack_require__(26);
 
@@ -27437,7 +27516,7 @@ var _ComponentRenderer = __webpack_require__(27);
 
 var _ComponentRenderer2 = _interopRequireDefault(_ComponentRenderer);
 
-var _metalEvents = __webpack_require__(3);
+var _metalEvents = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28659,7 +28738,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.disposeUnused = disposeUnused;
 exports.schedule = schedule;
 
-var _data = __webpack_require__(4);
+var _data = __webpack_require__(5);
 
 var comps_ = [];
 var disposing_ = false;
@@ -28719,9 +28798,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _metal = __webpack_require__(1);
 
-var _metalComponent = __webpack_require__(5);
+var _metalComponent = __webpack_require__(6);
 
-var _metalState = __webpack_require__(6);
+var _metalState = __webpack_require__(7);
 
 var _metalState2 = _interopRequireDefault(_metalState);
 

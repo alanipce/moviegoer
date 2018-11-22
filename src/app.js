@@ -1,15 +1,20 @@
 import JSXComponent from "metal-jsx";
 
-import MovieSelector from "./MovieSelector";
+import MultiStepIndicator from './MultiStepIndicator';
+import MovieStep from './MovieStep';
 
 import TMDB from './models/tmdb';
 
 import "./app.scss";
 
+const MOVIE_STEP = 0;
+const DATE_STEP = 1;
+const THEATRE_STEP = 2;
 
 class App extends JSXComponent {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
+        this.handleMovieConfirmation = this.handleMovieConfirmation.bind(this);
     }
 
     async attached() {
@@ -17,7 +22,7 @@ class App extends JSXComponent {
     }
 
     render() {
-        const {movies, selectedMovieIndex} = this.state;
+        const {movies, selectedMovieIndex, steps, currentStep} = this.state;
 
         if (movies === null) {
             return <p>Loading movie selections...</p>;
@@ -27,14 +32,28 @@ class App extends JSXComponent {
             <div class="container">
                 <header>
                     <h1>moviegoer</h1>
-                    <div>Step 1: Select your movie</div>
+                    <MultiStepIndicator steps={steps} currentStep={currentStep} />
                     {(selectedMovieIndex != null) && <p>{movies[selectedMovieIndex].title}</p>}
                 </header>
                 <main>
-                    <MovieSelector movies={movies} selectedMovieIndex={selectedMovieIndex} events={{movieSelected: this.handleMovieSelected}} />
+                    {(currentStep === MOVIE_STEP) && 
+                        <MovieStep movies={movies}
+                            selectedMovieIndex={selectedMovieIndex} 
+                            events={{movieSelected: this.handleMovieSelected, movieConfirmed: this.handleMovieConfirmation}} />
+                    }
+                    {(currentStep === DATE_STEP) && <div>Second step</div>}
+                    {(currentStep === THEATRE_STEP) && <div>Third step</div>}
                 </main>
             </div>
         );
+    }
+
+    navigateToDateStep() {
+        this.state.currentStep = DATE_STEP;
+    }
+
+    handleMovieConfirmation() {
+        this.navigateToDateStep();
     }
 
     handleMovieSelected(e) {
@@ -48,6 +67,22 @@ App.STATE = {
     },
     selectedMovieIndex: {
         value: null
+    },
+    steps: {
+        value: [
+            {
+                name: "Movie"
+            },
+            {
+                name: "Date"
+            },
+            {
+                name: "Theatre"
+            }
+        ]
+    },
+    currentStep: {
+        value: 0
     }
 };
 

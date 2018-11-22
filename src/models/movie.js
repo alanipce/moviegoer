@@ -1,6 +1,4 @@
-import {flipACoin} from '../utility/random';
 import moment from 'moment';
-
 
 function determineRecommendation(releaseDate, voteAverage) {
     // Note: moment treats the current week from Sunday to Saturday, so sunday  is the start of the week

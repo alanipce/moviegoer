@@ -1,5 +1,4 @@
 import Movie from './movie';
-import moment from 'moment';
 
 // namespace for The movie database utility methods
 const apiKey = "0f07480086543adf4e6e3898c5c50c0f";
@@ -28,7 +27,7 @@ const TMDb = {
                         release_date: releaseDate, 
                         vote_average: voteAverage
                     } = movieJSON;
-                    
+
                     const artworkUrl = (backdropPath) ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
 
                     return new Movie(title, artworkUrl, releaseDate, voteAverage);
