@@ -15,13 +15,9 @@ class MovieStep extends JSXComponent {
             <form data-onsubmit={this.handleMovieConfirmation}>
                 <div class="movie-step">
                     <div class="movie-step__overview">
-                        <h2>Step 1. Select a movie</h2>
+                        <h2>What do you want to watch?</h2>
                         {selectedMovieIndex !== null &&
-                            <div>
-                                <h3>Selected Movie</h3>
-                                <MovieOverview movie={movies[selectedMovieIndex]} />
-                                <button type="submit">Continue</button>
-                            </div>
+                            <button class="button" type="submit">Pick a date</button>
                         }
                     </div>
                     <div class="movie-step__selection">
