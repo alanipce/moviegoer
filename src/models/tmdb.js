@@ -22,7 +22,8 @@ const TMDb = {
 
                 return json.results.map((movieJSON) => {
                     const {
-                        title, 
+                        title,
+                        overview,
                         backdrop_path: backdropPath, 
                         release_date: releaseDate, 
                         vote_average: voteAverage
@@ -30,7 +31,7 @@ const TMDb = {
 
                     const artworkUrl = (backdropPath) ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
 
-                    return new Movie(title, artworkUrl, releaseDate, voteAverage);
+                    return new Movie(title, overview, artworkUrl, releaseDate, voteAverage);
                 })
             });
     },

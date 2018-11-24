@@ -10,9 +10,9 @@ class MultiStepIndicator extends JSXComponent {
                     let className = "step";
 
                     if (i < currentStep) {
-                        className += " step__complete";
+                        className += " step--complete";
                     } else if (i === currentStep) {
-                        className += " step__current";
+                        className += " step--current";
                     }
 
                     return <li class={className}>{s.name} </li>;

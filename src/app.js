@@ -33,9 +33,8 @@ class App extends JSXComponent {
                 <header>
                     <h1>moviegoer</h1>
                     <MultiStepIndicator steps={steps} currentStep={currentStep} />
-                    {(selectedMovieIndex != null) && <p>{movies[selectedMovieIndex].title}</p>}
                 </header>
-                <main>
+                <main class="card">
                     {(currentStep === MOVIE_STEP) && 
                         <MovieStep movies={movies}
                             selectedMovieIndex={selectedMovieIndex} 

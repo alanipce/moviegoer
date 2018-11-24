@@ -4640,6 +4640,42 @@ exports.default = _core2.default;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Fragment = exports.JSXComponent = exports.Config = exports.validators = exports.DangerouslySetHTML = undefined;
+
+var _metalState = __webpack_require__(7);
+
+var _DangerouslySetHTML = __webpack_require__(166);
+
+var _DangerouslySetHTML2 = _interopRequireDefault(_DangerouslySetHTML);
+
+var _JSXComponent = __webpack_require__(11);
+
+var _JSXComponent2 = _interopRequireDefault(_JSXComponent);
+
+var _Fragment = __webpack_require__(187);
+
+var _Fragment2 = _interopRequireDefault(_Fragment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _JSXComponent2.default;
+exports.DangerouslySetHTML = _DangerouslySetHTML2.default;
+exports.validators = _metalState.validators;
+exports.Config = _metalState.Config;
+exports.JSXComponent = _JSXComponent2.default;
+exports.Fragment = _Fragment2.default;
+//# sourceMappingURL=jsx.js.map
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 // This file exists just for backwards compatibility, making sure that old
 // default imports for this file still work. It's best to use the named exports
 // for each function instead though, since that allows bundlers like Rollup to
@@ -4669,42 +4705,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 exports.default = dom;
 exports.dom = dom;
 //# sourceMappingURL=dom.js.map
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Fragment = exports.JSXComponent = exports.Config = exports.validators = exports.DangerouslySetHTML = undefined;
-
-var _metalState = __webpack_require__(7);
-
-var _DangerouslySetHTML = __webpack_require__(166);
-
-var _DangerouslySetHTML2 = _interopRequireDefault(_DangerouslySetHTML);
-
-var _JSXComponent = __webpack_require__(11);
-
-var _JSXComponent2 = _interopRequireDefault(_JSXComponent);
-
-var _Fragment = __webpack_require__(187);
-
-var _Fragment2 = _interopRequireDefault(_Fragment);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _JSXComponent2.default;
-exports.DangerouslySetHTML = _DangerouslySetHTML2.default;
-exports.validators = _metalState.validators;
-exports.Config = _metalState.Config;
-exports.JSXComponent = _JSXComponent2.default;
-exports.Fragment = _Fragment2.default;
-//# sourceMappingURL=jsx.js.map
 
 /***/ }),
 /* 4 */
@@ -4899,7 +4899,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.globalEvalStyles = exports.globalEval = exports.features = exports.DomEventHandle = exports.DomEventEmitterProxy = exports.domData = undefined;
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 Object.keys(_dom).forEach(function (key) {
 	if (key === "default" || key === "__esModule") return;
@@ -6716,7 +6716,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 var _metal = __webpack_require__(1);
 
@@ -19836,7 +19836,7 @@ exports.default = jsxRenderer_;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/metal-jsx/lib/all/jsx.js
-var jsx = __webpack_require__(3);
+var jsx = __webpack_require__(2);
 var jsx_default = /*#__PURE__*/__webpack_require__.n(jsx);
 
 // CONCATENATED MODULE: ./src/MultiStepIndicator.js
@@ -19851,9 +19851,9 @@ class MultiStepIndicator extends jsx_default.a {
             let className = "step";
 
             if (i < currentStep) {
-                className += " step__complete";
+                className += " step--complete";
             } else if (i === currentStep) {
-                className += " step__current";
+                className += " step--current";
             }
 
             return iDOMHelpers.jsxWrapper(function (_className, _s$name) {
@@ -19962,7 +19962,36 @@ MovieSelector_MovieSelector.PROPS = {
 };
 
 /* harmony default export */ var src_MovieSelector = (MovieSelector_MovieSelector);
+// CONCATENATED MODULE: ./src/MovieOverview.js
+
+
+class MovieOverview extends jsx_default.a {
+    render() {
+        const { movie } = this.props;
+
+        IncrementalDOM.elementOpen("div", null, null, "class", "movie-overview");
+        IncrementalDOM.elementVoid("img", null, null, "src", movie.artworkUrl, "class", "movie-overview__thumbnail", "alt", "Movie backdrop image");
+        IncrementalDOM.elementOpen("div", null, null, "class", "movie-overview__content");
+        IncrementalDOM.elementOpen("h3", null, null, "class", "movie-overview__title");
+        iDOMHelpers.renderArbitrary(movie.title);
+        IncrementalDOM.elementClose("h3");
+        IncrementalDOM.elementOpen("div", null, null, "class", "movie-overview__description");
+        iDOMHelpers.renderArbitrary(movie.overview);
+        IncrementalDOM.elementClose("div");
+        IncrementalDOM.elementClose("div");
+        return IncrementalDOM.elementClose("div");
+    }
+}
+
+MovieOverview.PROPS = {
+    movie: {
+        value: null
+    }
+};
+
+/* harmony default export */ var src_MovieOverview = (MovieOverview);
 // CONCATENATED MODULE: ./src/MovieStep.js
+
 
 
 
@@ -19975,10 +20004,19 @@ class MovieStep_MovieStep extends jsx_default.a {
     render() {
         const { movies, selectedMovieIndex } = this.props;
 
-        IncrementalDOM.elementOpen("form", null, null, "data-onsubmit", this.handleMovieConfirmation);
-        iDOMHelpers.renderArbitrary(selectedMovieIndex !== null && (IncrementalDOM.elementOpen("button", null, null, "type", "submit"), IncrementalDOM.text("Continue"), IncrementalDOM.elementClose("button")));
-        IncrementalDOM.elementVoid(src_MovieSelector, null, null, "movies", movies, "selectedMovieIndex", selectedMovieIndex, "events", { movieSelected: this.handleMovieSelected });
-        return IncrementalDOM.elementClose("form");
+        IncrementalDOM.elementOpen('form', null, null, 'data-onsubmit', this.handleMovieConfirmation);
+        IncrementalDOM.elementOpen('div', null, null, 'class', 'movie-step');
+        IncrementalDOM.elementOpen('div', null, null, 'class', 'movie-step__overview');
+        IncrementalDOM.elementOpen('h2');
+        IncrementalDOM.text('Step 1. Select a movie');
+        IncrementalDOM.elementClose('h2');
+        iDOMHelpers.renderArbitrary(selectedMovieIndex !== null && (IncrementalDOM.elementOpen('div'), (IncrementalDOM.elementOpen('h3'), IncrementalDOM.text('Selected Movie'), IncrementalDOM.elementClose('h3')), (IncrementalDOM.elementVoid(src_MovieOverview, null, null, 'movie', movies[selectedMovieIndex])), (IncrementalDOM.elementOpen('button', null, null, 'type', 'submit'), IncrementalDOM.text('Continue'), IncrementalDOM.elementClose('button')), IncrementalDOM.elementClose('div')));
+        IncrementalDOM.elementClose('div');
+        IncrementalDOM.elementOpen('div', null, null, 'class', 'movie-step__selection');
+        IncrementalDOM.elementVoid(src_MovieSelector, null, null, 'movies', movies, 'selectedMovieIndex', selectedMovieIndex, 'events', { movieSelected: this.handleMovieSelected });
+        IncrementalDOM.elementClose('div');
+        IncrementalDOM.elementClose('div');
+        return IncrementalDOM.elementClose('form');
     }
 
     handleMovieConfirmation(event) {
@@ -20024,8 +20062,9 @@ function determineRecommendation(releaseDate, voteAverage) {
     }
 }
 
-function Movie(title, artworkUrl, releaseDate, voteAverage) {
+function Movie(title, overview, artworkUrl, releaseDate, voteAverage) {
     this.title = title;
+    this.overview = overview;
     this.artworkUrl = artworkUrl;
     this.releaseDate = moment_default()(releaseDate);
     this.voteAverage = voteAverage;
@@ -20060,6 +20099,7 @@ const TMDb = {
             return json.results.map(movieJSON => {
                 const {
                     title,
+                    overview,
                     backdrop_path: backdropPath,
                     release_date: releaseDate,
                     vote_average: voteAverage
@@ -20067,7 +20107,7 @@ const TMDb = {
 
                 const artworkUrl = backdropPath ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
 
-                return new movie(title, artworkUrl, releaseDate, voteAverage);
+                return new movie(title, overview, artworkUrl, releaseDate, voteAverage);
             });
         });
     }
@@ -20190,9 +20230,8 @@ class App_App extends jsx_default.a {
         IncrementalDOM.text('moviegoer');
         IncrementalDOM.elementClose('h1');
         IncrementalDOM.elementVoid(src_MultiStepIndicator, null, null, 'steps', steps, 'currentStep', currentStep);
-        iDOMHelpers.renderArbitrary(selectedMovieIndex != null && (IncrementalDOM.elementOpen('p'), iDOMHelpers.renderArbitrary(movies[selectedMovieIndex].title), IncrementalDOM.elementClose('p')));
         IncrementalDOM.elementClose('header');
-        IncrementalDOM.elementOpen('main');
+        IncrementalDOM.elementOpen('main', null, null, 'class', 'card');
         iDOMHelpers.renderArbitrary(currentStep === MOVIE_STEP && IncrementalDOM.elementVoid(src_MovieStep, null, null, 'movies', movies, 'selectedMovieIndex', selectedMovieIndex, 'events', { movieSelected: this.handleMovieSelected, movieConfirmed: this.handleMovieConfirmation }));
         iDOMHelpers.renderArbitrary(currentStep === DATE_STEP && (IncrementalDOM.elementOpen('div'), IncrementalDOM.text('Second step'), IncrementalDOM.elementClose('div')));
         iDOMHelpers.renderArbitrary(currentStep === THEATRE_STEP && (IncrementalDOM.elementOpen('div'), IncrementalDOM.text('Third step'), IncrementalDOM.elementClose('div')));
@@ -26838,7 +26877,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 var _metalEvents = __webpack_require__(4);
 
@@ -26953,7 +26992,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _metal = __webpack_require__(1);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27112,7 +27151,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _metal = __webpack_require__(1);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27247,7 +27286,7 @@ exports.default = globalEvalStyles;
 
 var _metal = __webpack_require__(1);
 
-var _dom = __webpack_require__(2);
+var _dom = __webpack_require__(3);
 
 var _features = __webpack_require__(23);
 
@@ -29365,7 +29404,7 @@ exports = module.exports = __webpack_require__(192)(false);
 
 
 // module
-exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  width: 800px;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 200px;\n  height: 200px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n\nol.multistep {\n  list-style-type: none; }\n\n.multistep {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  align-items: center;\n  justify-content: center;\n  counter-reset: multistep; }\n\n.multistep .step {\n  position: relative;\n  display: block;\n  /* Give all steps the same width so computations to determine divider length work */\n  width: 75px;\n  padding-top: 60px;\n  margin-right: 50px;\n  text-align: center; }\n  .multistep .step:last-child {\n    margin-right: 0; }\n  .multistep .step::before {\n    box-sizing: border-box;\n    counter-increment: multistep;\n    content: counter(multistep);\n    position: absolute;\n    top: 0;\n    left: 50%;\n    transform: translateX(-50%);\n    display: block;\n    width: 45px;\n    height: 45px;\n    border-radius: 50%;\n    background: lightgray;\n    line-height: 45px; }\n  .multistep .step.step__complete::before {\n    background: green; }\n  .multistep .step.step__current::before {\n    background: darkgray; }\n  .multistep .step::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 22.5px;\n    left: calc(50% + 22.5px);\n    width: calc(100% - 45px + 50px);\n    height: 4px;\n    background: lightgray; }\n  .multistep .step.step__complete::after {\n    background: green; }\n  .multistep .step.step__current::after {\n    background: darkgray; }\n  .multistep .step:last-of-type::after {\n    display: none; }\n", ""]);
+exports.push([module.i, "body {\n  position: relative;\n  background: #eee; }\n\n.container {\n  max-width: 1028px;\n  margin: 0 auto; }\n\n.movie-selector {\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center; }\n\n.movie-option {\n  position: relative;\n  box-sizing: content-box;\n  width: 150px;\n  height: 150px;\n  margin: 20px;\n  border-radius: 50%;\n  transform: scale(1);\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1); }\n\n.movie-option.recommended {\n  width: 200px;\n  height: 200px; }\n\n.movie-option:hover, .movie-option:focus-within {\n  transform: scale(1.2); }\n  .movie-option:hover .movie-option__label, .movie-option:focus-within .movie-option__label {\n    background: rgba(0, 0, 0, 0.3);\n    color: white; }\n  .movie-option:hover::before, .movie-option:focus-within::before {\n    transform: translateY(12px);\n    opacity: 0.2; }\n\n.movie-option::before {\n  content: '';\n  display: block;\n  position: absolute;\n  top: 12px;\n  left: 5px;\n  border-radius: 50%;\n  width: calc(100% - 10px);\n  height: calc(100% - 20px);\n  background: #000;\n  box-shadow: 0 0 12px 6px #000;\n  transition: transform 0.4s cubic-bezier(0, 0, 0.3, 1) opacity 0.4s cubic-bezier(0, 0, 0.3, 1);\n  opacity: 0.4; }\n\n.movie-option__container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  background: darkgray; }\n\n.movie-option__input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  margin: 0;\n  padding: 0; }\n\n.movie-option__label {\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: none;\n  background: transparent;\n  color: transparent;\n  text-align: center;\n  cursor: pointer;\n  z-index: 2; }\n\n.movie-option__input:checked + .movie-option__label {\n  border: 5px solid #4ee46f; }\n\n.movie-option__artwork {\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n  height: 100%;\n  z-index: 1; }\n\nol.multistep {\n  list-style-type: none; }\n\n.multistep {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  align-items: center;\n  justify-content: center;\n  counter-reset: multistep; }\n\n.multistep .step {\n  position: relative;\n  display: block;\n  /* Give all steps the same width so computations to determine divider length work */\n  width: 75px;\n  padding-top: 60px;\n  margin-right: 50px;\n  text-align: center; }\n  .multistep .step:last-child {\n    margin-right: 0; }\n  .multistep .step::before {\n    box-sizing: border-box;\n    counter-increment: multistep;\n    content: counter(multistep);\n    position: absolute;\n    top: 0;\n    left: 50%;\n    transform: translateX(-50%);\n    display: block;\n    width: 45px;\n    height: 45px;\n    border-radius: 50%;\n    background: lightgray;\n    line-height: 45px; }\n  .multistep .step.step--complete::before {\n    background: green; }\n  .multistep .step.step--current::before {\n    background: darkgray; }\n  .multistep .step::after {\n    content: '';\n    display: block;\n    position: absolute;\n    top: 22.5px;\n    left: calc(50% + 22.5px);\n    width: calc(100% - 45px + 50px);\n    height: 4px;\n    background: lightgray; }\n  .multistep .step.step--complete::after {\n    background: green; }\n  .multistep .step.step--current::after {\n    background: darkgray; }\n  .multistep .step:last-of-type::after {\n    display: none; }\n\n.card {\n  position: relative;\n  display: block;\n  padding: 20px;\n  border-radius: 3px;\n  background: #FFF;\n  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08), 0 1px 3px 1px rgba(60, 64, 67, 0.16); }\n\n.movie-step {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around; }\n\n.movie-step__overview {\n  max-width: 400px; }\n\n.movie-step__selection {\n  max-width: 500px; }\n\n.movie-overview {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  padding: 20px; }\n\n.movie-overview__thumbnail {\n  order: 1;\n  width: 50px;\n  height: 50px; }\n\n.movie-overview__thumbnail + .movie-overview__content {\n  margin-left: 20px; }\n\n.movie-overview__content {\n  order: 2; }\n\n.movie-overview__title {\n  margin-top: 0; }\n", ""]);
 
 // exports
 

@@ -15,8 +15,9 @@ function determineRecommendation(releaseDate, voteAverage) {
     }
 }
 
-function Movie(title, artworkUrl, releaseDate, voteAverage) {
+function Movie(title, overview, artworkUrl, releaseDate, voteAverage) {
     this.title = title;
+    this.overview = overview;
     this.artworkUrl = artworkUrl;
     this.releaseDate = moment(releaseDate);
     this.voteAverage = voteAverage;

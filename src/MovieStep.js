@@ -1,5 +1,6 @@
 import JSXComponent from 'metal-jsx';
 import MovieSelector from "./MovieSelector";
+import MovieOverview from './MovieOverview';
 
 class MovieStep extends JSXComponent {
     created() {
@@ -12,11 +13,24 @@ class MovieStep extends JSXComponent {
 
         return (
             <form data-onsubmit={this.handleMovieConfirmation}>
-                {(selectedMovieIndex !== null) && <button type="submit">Continue</button>}
-                <MovieSelector 
-                    movies={movies} 
-                    selectedMovieIndex={selectedMovieIndex} 
-                    events={{movieSelected: this.handleMovieSelected}} />
+                <div class="movie-step">
+                    <div class="movie-step__overview">
+                        <h2>Step 1. Select a movie</h2>
+                        {selectedMovieIndex !== null &&
+                            <div>
+                                <h3>Selected Movie</h3>
+                                <MovieOverview movie={movies[selectedMovieIndex]} />
+                                <button type="submit">Continue</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="movie-step__selection">
+                        <MovieSelector 
+                            movies={movies} 
+                            selectedMovieIndex={selectedMovieIndex} 
+                            events={{movieSelected: this.handleMovieSelected}} />
+                    </div>
+                </div>
             </form>
         );
     }
