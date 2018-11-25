@@ -1,5 +1,5 @@
-$step-indicator-size: 30px;
-$step-indicator-interspace: 30px;
+$step-indicator-size: 40px;
+$step-indicator-interspace: 15px;
 $step-indicator-color: lightgray;
 $step-indicator-complete-color: green;
 $step-indicator-current-color: darkgray;
@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     position: relative;
-    background: #eee;
+    background: linear-gradient(to right, #43cea2, #185a9d) #eee;
 }
 
 .container {
