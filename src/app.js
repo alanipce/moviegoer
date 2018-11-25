@@ -4,7 +4,6 @@ import MultiStepIndicator from './MultiStepIndicator';
 import MovieStep from './MovieStep';
 import DateStep from "./DateStep";
 
-import TMDB from './models/tmdb';
 
 import "./app.scss";
 
@@ -15,19 +14,10 @@ const SHOWTIME_STEP = 2;
 class App extends JSXComponent {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
-        this.handleMovieConfirmation = this.handleMovieConfirmation.bind(this);
-    }
-
-    async attached() {
-        this.state.movies = await TMDB.fetchTheatricalReleases();
     }
 
     render() {
-        const {movies, selectedMovieIndex, steps, currentStep} = this.state;
-
-        if (movies === null) {
-            return <p>Loading movie selections...</p>;
-        }
+        const {selectedMovie, steps, currentStep} = this.state;
 
         return (
             <div class="container">
@@ -37,12 +27,11 @@ class App extends JSXComponent {
                 </header>
                 <main class="card">
                     {(currentStep === MOVIE_STEP) && 
-                        <MovieStep movies={movies}
-                            selectedMovieIndex={selectedMovieIndex} 
-                            events={{movieSelected: this.handleMovieSelected, movieConfirmed: this.handleMovieConfirmation}} />
+                        <MovieStep
+                            events={{movieSelected: this.handleMovieSelected}} />
                     }
                     {(currentStep === DATE_STEP) &&
-                         <DateStep movie={movies[selectedMovieIndex]}/>
+                         <DateStep movie={selectedMovie}/>
                     }
                     {(currentStep === SHOWTIME_STEP) && <div>Last step</div>}
                 </main>
@@ -54,20 +43,15 @@ class App extends JSXComponent {
         this.state.currentStep = DATE_STEP;
     }
 
-    handleMovieConfirmation() {
+    handleMovieSelected(e) {
+        this.state.selectedMovie = e.movie;
         this.navigateToDateStep();
     }
 
-    handleMovieSelected(e) {
-        this.state.selectedMovieIndex = this.state.movies.indexOf(e.movie);
-    }
 }
 
 App.STATE = {
-    movies: {
-        value: null
-    },
-    selectedMovieIndex: {
+    selectedMovie: {
         value: null
     },
     steps: {

@@ -2,14 +2,24 @@ import JSXComponent from 'metal-jsx';
 import MovieSelector from "./MovieSelector";
 import MovieOverview from './MovieOverview';
 
+import TMDB from './models/tmdb';
+
 class MovieStep extends JSXComponent {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
         this.handleMovieConfirmation = this.handleMovieConfirmation.bind(this);
     }
 
+    async attached() {
+        this.state.movies = await TMDB.fetchTheatricalReleases();
+    }
+
     render() {
-        const {movies, selectedMovieIndex} = this.props;
+        const {movies, selectedMovieIndex} = this.state;
+
+        if (movies === null) {
+            return <p>Loading movie selections...</p>;
+        }
 
         return (
             <form data-onsubmit={this.handleMovieConfirmation}>
@@ -32,17 +42,17 @@ class MovieStep extends JSXComponent {
     handleMovieConfirmation(event) {
         event.preventDefault();
         console.log("confirmed movie selection");
-        this.emit('movieConfirmed');
+        this.emit('movieSelected', {movie: this.state.movies[this.state.selectedMovieIndex]});
     }
 
-    handleMovieSelected(payload) {
-        this.emit('movieSelected', payload)
+    handleMovieSelected(e) {
+        this.state.selectedMovieIndex = this.state.movies.indexOf(e.movie);
     }
 };
 
-MovieStep.PROPS = {
+MovieStep.STATE = {
     movies: {
-        value: []
+        value: null
     },
     selectedMovieIndex: {
         value: null
