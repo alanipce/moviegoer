@@ -16,9 +16,7 @@ class MovieStep extends JSXComponent {
                 <div class="movie-step">
                     <div class="movie-step__overview">
                         <h2>What do you want to watch?</h2>
-                        {selectedMovieIndex !== null &&
-                            <button class="button" type="submit">Pick a date</button>
-                        }
+                        <button class="button" type="submit" disabled={selectedMovieIndex === null}>Pick a date</button>
                     </div>
                     <div class="movie-step__selection">
                         <MovieSelector 
