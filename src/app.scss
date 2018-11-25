@@ -182,8 +182,8 @@ ol.multistep {
         display: block;
         position: absolute;
         top: $step-indicator-size / 2;
-        left: calc(50% + #{$step-indicator-size / 2});
-        width: calc(100% - #{$step-indicator-size} + #{$step-indicator-interspace});
+        left: calc(50% + #{$step-indicator-size / 2} - 1px);
+        width: calc(100% - #{$step-indicator-size} + #{$step-indicator-interspace} + 2px);
         height: 4px;
         background: $step-indicator-color;
     }

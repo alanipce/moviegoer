@@ -1,8 +1,9 @@
 import Movie from './movie';
+import {buildUrl} from '../utility/network';
 
-// namespace for The movie database utility methods
-const apiKey = "0f07480086543adf4e6e3898c5c50c0f";
-const apiBaseUrl = "https://api.themoviedb.org/3";
+const API_KEY = "0f07480086543adf4e6e3898c5c50c0f";
+const API_BASE_URL = "https://api.themoviedb.org/3";
+
 let config = null;
 
 // release type constants
@@ -29,7 +30,7 @@ const TMDb = {
                         vote_average: voteAverage
                     } = movieJSON;
 
-                    const artworkUrl = (backdropPath) ? _buildAbsoluteUrl(backdropResourceBaseUrl, backdropPath) : null;
+                    const artworkUrl = (backdropPath) ? buildUrl(backdropResourceBaseUrl, backdropPath) : null;
 
                     return new Movie(title, overview, artworkUrl, releaseDate, voteAverage);
                 })
@@ -38,18 +39,8 @@ const TMDb = {
     
 };
 
-
-function _configure() {
-    return fetch(_buildApiUrl("/configuration"))
-            .then((resp) => resp.json())
-            .then((json) => {
-                config = json;
-                return config;
-            });
-}
-
 function _get(path, params) {
-    if (!apiKey) {
+    if (!API_KEY) {
         console.error("TMDb API key is missing!");
 
         return;
@@ -58,11 +49,13 @@ function _get(path, params) {
     return fetch(_buildApiUrl(path, params)).then(resp => resp.json());
 }
 
+function _buildApiUrl(path, params) {
+    return buildUrl(API_BASE_URL, path, Object.assign({}, params, {"api_key": API_KEY}));
+}
+
 function _fetchBackdropResourceBaseUrl() {
     if (config === null) {
-        return _configure().then(() => {
-            return _buildBackdropResourceBaseUrl(config);
-        });
+        return _configure().then(_buildBackdropResourceBaseUrl);
     } else {
         return Promise.resolve(_buildBackdropResourceBaseUrl(config));
     }
@@ -74,42 +67,13 @@ function _buildBackdropResourceBaseUrl(configuration) {
     return `${baseUrl}/${size}`;
 }
 
-function _buildApiUrl(path, params = {}) {
-    const absoluteUrl = _buildAbsoluteApiUrl(path);
-    const paramQuery = _urlEncodedQueryParameters(Object.assign({}, params, {"api_key": apiKey}));
-
-    return `${absoluteUrl}?${paramQuery}`;
-}
-
-function _buildAbsoluteApiUrl(path) {
-    return _buildAbsoluteUrl(apiBaseUrl, path);
-}
-
-function _buildAbsoluteUrl(baseUrl, path) {
-    var relativePath = path;
-    
-    // auto-append forward slash to beginning if not provided
-    if (relativePath.length > 0 && relativePath.charAt(0) != "/") {    
-        relativePath = "/" + relativePath;
-    }
-
-    return `${baseUrl}${relativePath}`;
-}
-
-function _urlEncodedQueryParameters(params) {
-    let query = "";
-
-    Object.getOwnPropertyNames(params).forEach((key, index) => {
-        const value = encodeURIComponent(params[key]);
-
-        if (index == 0) {
-            query = `${key}=${value}`;
-        } else {
-            query += `&${key}=${value}`;
-        }
-    });
-
-    return query;
+function _configure() {
+    return fetch(_buildApiUrl("/configuration"))
+            .then((resp) => resp.json())
+            .then((json) => {
+                config = json;
+                return config;
+            });
 }
 
 export default TMDb;

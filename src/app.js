@@ -2,6 +2,7 @@ import JSXComponent from "metal-jsx";
 
 import MultiStepIndicator from './MultiStepIndicator';
 import MovieStep from './MovieStep';
+import DateStep from "./DateStep";
 
 import TMDB from './models/tmdb';
 
@@ -9,7 +10,7 @@ import "./app.scss";
 
 const MOVIE_STEP = 0;
 const DATE_STEP = 1;
-const THEATRE_STEP = 2;
+const SHOWTIME_STEP = 2;
 
 class App extends JSXComponent {
     created() {
@@ -40,8 +41,10 @@ class App extends JSXComponent {
                             selectedMovieIndex={selectedMovieIndex} 
                             events={{movieSelected: this.handleMovieSelected, movieConfirmed: this.handleMovieConfirmation}} />
                     }
-                    {(currentStep === DATE_STEP) && <div>Second step</div>}
-                    {(currentStep === THEATRE_STEP) && <div>Third step</div>}
+                    {(currentStep === DATE_STEP) &&
+                         <DateStep movie={movies[selectedMovieIndex]}/>
+                    }
+                    {(currentStep === SHOWTIME_STEP) && <div>Last step</div>}
                 </main>
             </div>
         );
@@ -76,12 +79,12 @@ App.STATE = {
                 name: "Date"
             },
             {
-                name: "Theatre"
+                name: "Showtime"
             }
         ]
     },
     currentStep: {
-        value: 0
+        value: MOVIE_STEP
     }
 };
 
