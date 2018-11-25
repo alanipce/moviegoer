@@ -4,7 +4,6 @@ import MultiStepIndicator from './MultiStepIndicator';
 import MovieStep from './MovieStep';
 import DateStep from "./DateStep";
 
-
 import "./app.scss";
 
 const MOVIE_STEP = 0;
@@ -14,10 +13,11 @@ const SHOWTIME_STEP = 2;
 class App extends JSXComponent {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
+        this.handleDateSelected = this.handleDateSelected.bind(this);
     }
 
     render() {
-        const {selectedMovie, steps, currentStep} = this.state;
+        const {selectedMovie, selectedDate, steps, currentStep} = this.state;
 
         return (
             <div class="container">
@@ -31,7 +31,8 @@ class App extends JSXComponent {
                             events={{movieSelected: this.handleMovieSelected}} />
                     }
                     {(currentStep === DATE_STEP) &&
-                         <DateStep movie={selectedMovie}/>
+                         <DateStep movie={selectedMovie}
+                            events={{dateSelected: this.handleDateSelected}}/>
                     }
                     {(currentStep === SHOWTIME_STEP) && <div>Last step</div>}
                 </main>
@@ -43,15 +44,26 @@ class App extends JSXComponent {
         this.state.currentStep = DATE_STEP;
     }
 
+    navigateToShowtimeStep() {
+        this.state.currentStep = SHOWTIME_STEP;
+    }
+
     handleMovieSelected(e) {
         this.state.selectedMovie = e.movie;
         this.navigateToDateStep();
     }
 
+    handleDateSelected(e) {
+        this.state.selectedDate = e.date;
+        this.navigateToShowtimeStep();
+    }
 }
 
 App.STATE = {
     selectedMovie: {
+        value: null
+    },
+    selectedDate: {
         value: null
     },
     steps: {
