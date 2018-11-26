@@ -5,6 +5,7 @@ import MovieStep from './MovieStep';
 import DateStep from "./DateStep";
 
 import "./app.scss";
+import ShowtimeStep from "./ShowtimeStep";
 
 const MOVIE_STEP = 0;
 const DATE_STEP = 1;
@@ -31,10 +32,12 @@ class App extends JSXComponent {
                             events={{movieSelected: this.handleMovieSelected}} />
                     }
                     {(currentStep === DATE_STEP) &&
-                         <DateStep movie={selectedMovie}
+                        <DateStep movie={selectedMovie}
                             events={{dateSelected: this.handleDateSelected}}/>
                     }
-                    {(currentStep === SHOWTIME_STEP) && <div>Last step</div>}
+                    {(currentStep === SHOWTIME_STEP) &&
+                        <ShowtimeStep movie={selectedMovie}/>
+                    }
                 </main>
             </div>
         );
