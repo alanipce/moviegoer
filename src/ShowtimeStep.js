@@ -1,5 +1,6 @@
 import JSXComponent from 'metal-jsx';
 import MovieOverview from './MovieOverview';
+import AMCApi from './models/amc';
 
 class ShowtimeStep extends JSXComponent {
     created() {
@@ -33,6 +34,8 @@ class ShowtimeStep extends JSXComponent {
 
     handleUserLocationAcquired(position) {
         this.state.currentPosition = position;
+
+        AMCApi.getMovieShowtimes(this.props.movie.title, this.props.date, this.state.currentPosition.coords);
     }
 
     handleUserLocationError(error) {
@@ -42,6 +45,9 @@ class ShowtimeStep extends JSXComponent {
 
 ShowtimeStep.PROPS = {
     movie: {
+        value: null
+    },
+    date: {
         value: null
     }
 }

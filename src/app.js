@@ -36,7 +36,8 @@ class App extends JSXComponent {
                             events={{dateSelected: this.handleDateSelected}}/>
                     }
                     {(currentStep === SHOWTIME_STEP) &&
-                        <ShowtimeStep movie={selectedMovie}/>
+                        <ShowtimeStep movie={selectedMovie}
+                            date={selectedDate}/>
                     }
                 </main>
             </div>

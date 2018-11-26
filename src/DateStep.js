@@ -2,8 +2,7 @@ import JSXComponent from 'metal-jsx';
 import MovieOverview from './MovieOverview';
 
 import moment from 'moment';
-
-const DATE_FORMAT = "YYYY-MM-DD";
+import {formatDate} from './utility/formatters';
 
 class DateStep extends JSXComponent {
     created() {
@@ -17,9 +16,9 @@ class DateStep extends JSXComponent {
         const {movie} = this.props;
         const {date} = this.state;
 
-        const todayFormatted = this.today.format(DATE_FORMAT);
-        const nextMonthFormatted = this.nextMonth.format(DATE_FORMAT);
-        const dateFormatted = date.format(DATE_FORMAT);
+        const todayFormatted = formatDate(this.today, {inputFormat: true});
+        const nextMonthFormatted = formatDate(this.nextMonth, {inputFormat: true});
+        const dateFormatted = formatDate(date, {inputFormat: true});
 
         return (
             <form data-onsubmit={this.handleSubmission}>
