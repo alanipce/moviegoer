@@ -23,17 +23,25 @@ class DateStep extends JSXComponent {
 
         return (
             <form data-onsubmit={this.handleSubmission}>
-                <h3>Your selection</h3>
-                <MovieOverview movie={movie} />
-                <h3>Pick a date</h3>
-                <input 
-                    type="date" 
-                    min={todayFormatted} 
-                    max={nextMonthFormatted} 
-                    value={dateFormatted} 
-                    data-onchange={this.handleDateChange}
-                    aria-label="Enter a date to view showtimes for"/>
-                <button class="button" type="submit" disabled={!date.isValid()}>Pick a Showtime</button>
+                <div class="date-step">
+                    <div class="date-step__selection">
+                        <h3>Your Selection</h3>
+                        <MovieOverview movie={movie} />
+                    </div>
+                    <div class="data-step__datepicker">
+                        <div>
+                            <h3>Pick a date</h3>
+                            <input
+                                type="date" 
+                                min={todayFormatted} 
+                                max={nextMonthFormatted} 
+                                value={dateFormatted} 
+                                data-onchange={this.handleDateChange}
+                                aria-label="Enter a date to view showtimes for"/>
+                        </div>
+                        <button class="button" type="submit" disabled={!date.isValid()}>Continue</button>
+                    </div>
+                </div>
             </form>
         );
     }

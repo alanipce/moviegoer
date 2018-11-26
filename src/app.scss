@@ -222,6 +222,13 @@ ol.multistep {
     align-items: center;
 }
 
+.data-step__datepicker {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
 .movie-overview {
     display: flex;
     flex-direction: row;
