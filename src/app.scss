@@ -1,9 +1,10 @@
-$step-indicator-size: 40px;
+$step-indicator-diameter: 50px;
 $step-indicator-interspace: 15px;
+$step-indicator-divider-height: 2px;
 $step-indicator-color: lightgray;
-$step-indicator-complete-color: green;
+$step-indicator-complete-color: #5cb85c;
 $step-indicator-current-color: darkgray;
-$step-container-width: $step-indicator-size + 20px;
+$step-container-width: $step-indicator-diameter + 20px;
 
 html {
     font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
@@ -145,9 +146,10 @@ ol.multistep {
     display: block;
     /* Give all steps the same width so computations to determine divider length work */
     width: $step-container-width;
-    padding-top: $step-indicator-size + 15px;
+    padding-top: $step-indicator-diameter + 10px;
     margin-right: $step-indicator-interspace;
     text-align: center;
+    color: rgba(255, 255, 255, 0.6);
 
     &:last-child {
         margin-right: 0;
@@ -162,11 +164,12 @@ ol.multistep {
         left: 50%;
         transform: translateX(-50%);
         display: block;
-        width: $step-indicator-size;
-        height: $step-indicator-size;
+        width: $step-indicator-diameter;
+        height: $step-indicator-diameter;
         border-radius: 50%;
         background: $step-indicator-color;
-        line-height: $step-indicator-size;
+        line-height: $step-indicator-diameter;
+        color: rgba(0, 0, 0, 0.6);
     }
 
     &.step--complete::before {
@@ -181,10 +184,10 @@ ol.multistep {
         content: '';
         display: block;
         position: absolute;
-        top: $step-indicator-size / 2;
-        left: calc(50% + #{$step-indicator-size / 2} - 1px);
-        width: calc(100% - #{$step-indicator-size} + #{$step-indicator-interspace} + 2px);
-        height: 4px;
+        top: ($step-indicator-diameter - $step-indicator-divider-height) / 2;
+        left: calc(50% + #{$step-indicator-diameter / 2} - 1px);
+        width: calc(100% - #{$step-indicator-diameter} + #{$step-indicator-interspace} + 2px);
+        height: $step-indicator-divider-height;
         background: $step-indicator-color;
     }
 
