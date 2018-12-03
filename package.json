@@ -14,6 +14,7 @@
 		"start": "http-server . -p 4000"
 	},
 	"dependencies": {
+		"google-maps": "^3.3.0",
 		"metal-jsx": "^2.14.1",
 		"moment": "^2.22.2"
 	},

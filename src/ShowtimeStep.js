@@ -1,45 +1,62 @@
 import JSXComponent from 'metal-jsx';
 import MovieOverview from './MovieOverview';
 import AMCApi from './models/amc';
+import GoogleMapsLoader from 'google-maps';
 
 class ShowtimeStep extends JSXComponent {
-    created() {
-        this.handleUserLocationAcquired = this.handleUserLocationAcquired.bind(this);
-        this.handleUserLocationError = this.handleUserLocationError.bind(this);
-    }
-
     attached() {
         const locationServicesAvailable = "geolocation" in navigator;
 
         if (locationServicesAvailable) {
-            navigator.geolocation.getCurrentPosition(this.handleUserLocationAcquired, this.handleUserLocationError);
+            navigator.geolocation.getCurrentPosition((position) => {
+                    this.state.currentPosition = position;
+
+                    console.log(`Obtained user positiion at (${position.coords.latitude}, ${position.coords.longitude})`);
+
+                    GoogleMapsLoader.KEY = "AIzaSyC_gNwWVNbM1vcsOESuHcQ-oK0WtSfiFNg";
+                    GoogleMapsLoader.load((google) => {
+                        let geocoder = new google.maps.Geocoder();
+
+                        // reverse geocode user position
+                        geocoder.geocode({ 'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, (results, status) => {
+                            if (status === "OK") {
+                                if (results[0]) {
+                                    const cityComponent = results[0].address_components.find((component) => {
+                                        return component.types.includes("locality");
+                                    });
+
+                                    this.state.currentCity = cityComponent.long_name;
+                                } else {
+                                    this.state.error = "City not found!";
+                                }
+                            } else {
+                                this.state.error = status;
+                            }
+                        });
+                    });
+                    // AMCApi.getMovieShowtimes(this.props.movie.title, this.props.date, this.state.currentPosition.coords);
+                }, (error) => {
+                    this.state.error = error.message;
+                });
+
+
         } else {
-            this.state.geolocationError = "Location services disabled!";
+            this.state.error = "Location services disabled!";
         }
     }
 
     render() {
-        const {geolocationError, currentPosition} = this.state;
+        const {error, currentPosition, currentCity} = this.state;
 
-        if (geolocationError === false) {
-            return (<p>{geolocationError}</p>);
+        if (error === false) {
+            return (<p>{error}</p>);
         }
 
-        if (currentPosition === null) {
+        if (currentPosition === null || currentCity === null) {
             return (<p>Locating nearby theatres...</p>);
         }
 
-        return (<p>Got your position! You are at {currentPosition.coords.latitude}, {currentPosition.coords.longitude}</p>);
-    }
-
-    handleUserLocationAcquired(position) {
-        this.state.currentPosition = position;
-
-        AMCApi.getMovieShowtimes(this.props.movie.title, this.props.date, this.state.currentPosition.coords);
-    }
-
-    handleUserLocationError(error) {
-        this.state.geolocationError = error.message;
+        return (<p>Got your address! You are at {currentCity}</p>);
     }
 }
 
@@ -56,7 +73,10 @@ ShowtimeStep.STATE = {
     currentPosition: {
         value: null
     },
-    geolocationError: {
+    currentCity: {
+        value: null
+    },
+    error: {
         value: null
     }
 }
