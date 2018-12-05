@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-	entry: './src/App.js',
+	entry: ['babel-polyfill', './src/App.js'],
 	module: {
 		rules: [{
 			test: /\.js$/,
@@ -10,7 +10,7 @@ module.exports = {
 				loader: 'babel-loader',
 				options: {
 					compact: false,
-					presets: ['babel-preset-metal-jsx']
+					presets: ['babel-preset-env', 'babel-preset-metal-jsx']
 				}
 			}
 		}, {
