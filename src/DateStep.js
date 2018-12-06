@@ -8,17 +8,18 @@ class DateStep extends JSXComponent {
     created() {
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
-        this.today = moment();
-        this.nextMonth = this.today.clone().add(1, 'month');
     }
 
     render() {
         const {movie} = this.props;
-        const {date} = this.state;
 
-        const todayFormatted = formatDate(this.today, {inputFormat: true});
-        const nextMonthFormatted = formatDate(this.nextMonth, {inputFormat: true});
-        const dateFormatted = formatDate(date, {inputFormat: true});
+        const minAvailableDate = this.getEarliestViewingDate();
+        const maxAvailableDate = this.getLatestViewingDate();
+        const viewingDate = this.getCurrentViewingDate();
+
+        const minAvailableDateFormatted = formatDate(minAvailableDate, {inputFormat: true});
+        const maxAvailableDateFormatted = formatDate(maxAvailableDate, {inputFormat: true});
+        const viewingDateFormatted = formatDate(viewingDate, {inputFormat: true});
 
         return (
             <form data-onsubmit={this.handleSubmission}>
@@ -32,13 +33,13 @@ class DateStep extends JSXComponent {
                             <h3>Pick a date</h3>
                             <input
                                 type="date" 
-                                min={todayFormatted} 
-                                max={nextMonthFormatted} 
-                                value={dateFormatted} 
+                                min={minAvailableDateFormatted} 
+                                max={maxAvailableDateFormatted} 
+                                value={viewingDateFormatted} 
                                 data-onchange={this.handleDateChange}
                                 aria-label="Enter a date to view showtimes for"/>
                         </div>
-                        <button class="button" type="submit" disabled={!date.isValid()}>Continue</button>
+                        <button class="button" type="submit" disabled={!viewingDate.isValid()}>Continue</button>
                     </div>
                 </div>
             </form>
@@ -48,11 +49,29 @@ class DateStep extends JSXComponent {
     handleSubmission(e) {
         e.preventDefault();
 
-        this.emit('dateSelected', {date: this.state.date});
+        this.emit('dateSelected', {date: this.getCurrentViewingDate()});
     }
     handleDateChange(e) {
-        this.state.date = moment(e.target.value);
+        this.state.selectedDate = moment(e.target.value);
     }
+
+    getCurrentViewingDate() {
+        return this.state.selectedDate || this.getEarliestViewingDate();    
+    }
+
+    getEarliestViewingDate() {
+        const {movie} = this.props;
+
+        const today = moment();
+        const releaseDate = movie.releaseDate.clone();
+
+        return moment.max(today, releaseDate);
+    }
+
+    getLatestViewingDate() {
+        return this.props.movie.releaseDate.clone().add(3, 'month');
+    }
+
 }
 
 DateStep.PROPS = {
@@ -62,8 +81,8 @@ DateStep.PROPS = {
 };
 
 DateStep.STATE = {
-    date: {
-        value: moment()
+    selectedDate: {
+        value: null
     }
 };
 

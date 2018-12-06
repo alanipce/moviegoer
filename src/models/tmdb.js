@@ -1,6 +1,9 @@
 import Movie from './movie';
 import {buildUrl} from '../utility/network';
 
+import moment from 'moment';
+import { formatDate } from '../utility/formatters';
+
 const API_KEY = "0f07480086543adf4e6e3898c5c50c0f";
 const API_BASE_URL = "https://api.themoviedb.org/3";
 
@@ -16,7 +19,19 @@ const RELEASE_TYPE_TV = 6;
 
 const TMDb = {
     fetchTheatricalReleases: function () {
-        return Promise.all([_get("/discover/movie", {"with_release_type": `${RELEASE_TYPE_THEATRICAL}|${RELEASE_TYPE_LIMITED_THEATRICAL}`}), _fetchBackdropResourceBaseUrl()])
+        const afterDate = moment().subtract(2, 'weeks');
+        const beforeDate = moment().add(2, 'weeks');
+
+        const movieFilterOptions = {
+            "release_date.gte": formatDate(afterDate, {inputFormat: true}),
+            "release_date.lte": formatDate(beforeDate, {inputFormat: true}),
+            "with_release_type": `${RELEASE_TYPE_THEATRICAL}|${RELEASE_TYPE_LIMITED_THEATRICAL}`,
+        };
+
+        const fetchMoviesPromise = _get("/discover/movie", movieFilterOptions);
+        const fetchBackdropConfigUrlPromise = _fetchBackdropResourceBaseUrl();
+
+        return Promise.all([fetchMoviesPromise, fetchBackdropConfigUrlPromise])
             .then((values) => {
                 const json = values[0];
                 const backdropResourceBaseUrl = values[1];
