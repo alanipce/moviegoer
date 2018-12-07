@@ -15,7 +15,7 @@ class MultiStepIndicator extends JSXComponent {
                         className += " step--current";
                     }
 
-                    return <li class={className}>{s.name} </li>;
+                    return <li class={className}>{s.name}</li>;
                 })}
             </ol>
         );

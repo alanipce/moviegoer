@@ -26,7 +26,7 @@ class App extends JSXComponent {
                     <h1>moviegoer</h1>
                     <MultiStepIndicator steps={steps} currentStep={currentStep} />
                 </header>
-                <main class="card">
+                <main>
                     {(currentStep === MOVIE_STEP) && 
                         <MovieStep
                             events={{movieSelected: this.handleMovieSelected}} />
