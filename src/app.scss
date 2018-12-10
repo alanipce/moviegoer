@@ -270,28 +270,28 @@ ol.multistep {
     align-items: flex-end;
 }
 
-.movie-overview {
+.movie-summary {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 20px;
 }
 
-.movie-overview__thumbnail {
+.movie-summary__thumbnail {
     order: 1;
     width: 50px;
     height: 50px;
 }
 
-.movie-overview__thumbnail + .movie-overview__content {
+.movie-summary__thumbnail + .movie-summary__content {
     margin-left: 20px;
 }
 
-.movie-overview__content {
+.movie-summary__content {
     order: 2;
 }
 
-.movie-overview__title {
+.movie-summary__title {
     margin-top: 0;
 }
 

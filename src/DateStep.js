@@ -1,5 +1,5 @@
 import JSXComponent from 'metal-jsx';
-import MovieOverview from './MovieOverview';
+import MovieSummary from './MovieSummary';
 
 import moment from 'moment';
 import {formatDate} from './utility/formatters';
@@ -26,7 +26,7 @@ class DateStep extends JSXComponent {
                 <div class="date-step">
                     <div class="date-step__selection">
                         <h3>Your Selection</h3>
-                        <MovieOverview movie={movie} />
+                        <MovieSummary movie={movie} />
                     </div>
                     <div class="data-step__datepicker">
                         <div>

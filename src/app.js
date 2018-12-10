@@ -27,7 +27,7 @@ class App extends JSXComponent {
                     {/* <MultiStepIndicator steps={steps} currentStep={currentStep} /> */}
                 </header>
                 <main>
-                    {(currentStep === MOVIE_STEP) && 
+                    {/* {(currentStep === MOVIE_STEP) && 
                         <MovieStep
                             events={{movieSelected: this.handleMovieSelected}} />
                     }
@@ -38,7 +38,7 @@ class App extends JSXComponent {
                     {(currentStep === SHOWTIME_STEP) &&
                         <ShowtimeStep movie={selectedMovie}
                             date={selectedDate}/>
-                    }
+                    } */}
                 </main>
             </div>
         );

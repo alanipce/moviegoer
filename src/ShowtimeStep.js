@@ -1,5 +1,5 @@
 import JSXComponent from 'metal-jsx';
-import MovieOverview from './MovieOverview';
+import MovieSummary from './MovieSummary';
 import AMCApi from './models/amc';
 import {requestUserLocation} from './models/locationServices';
 
