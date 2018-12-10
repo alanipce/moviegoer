@@ -24,7 +24,7 @@ class App extends JSXComponent {
             <div class="container">
                 <header>
                     <h1>moviegoer</h1>
-                    <MultiStepIndicator steps={steps} currentStep={currentStep} />
+                    {/* <MultiStepIndicator steps={steps} currentStep={currentStep} /> */}
                 </header>
                 <main>
                     {(currentStep === MOVIE_STEP) && 

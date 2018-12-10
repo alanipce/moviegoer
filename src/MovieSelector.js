@@ -1,5 +1,5 @@
 import JSXComponent from 'metal-jsx';
-import MovieListing from './MovieListing';
+import MovieOption from './MovieOption';
 
 class MovieSelector extends JSXComponent {
     created() {
@@ -11,7 +11,7 @@ class MovieSelector extends JSXComponent {
 
         return (
             <div class="movie-selector">
-                {movies.map((m, i) => <MovieListing movie={m} isSelected={i === selectedMovieIndex} events={{movieSelected: this.handleSelectedMovie}} />)}
+                {movies.map((m, i) => <MovieOption movie={m} isSelected={i === selectedMovieIndex} events={{movieSelected: this.handleSelectedMovie}} />)}
             </div>
         );
     }

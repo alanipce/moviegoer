@@ -1,13 +1,13 @@
 import JSXComponent from 'metal-jsx';
 import uniqueId from './utility/uniqueid';
 
-class MovieListing extends JSXComponent {
+class MovieOption extends JSXComponent {
     created() {
         this.handleSelectionChange = this.handleSelectionChange.bind(this);
     }
 
     willAttach() {
-        this.inputId = uniqueId('movielisting');
+        this.inputId = uniqueId('movieoption');
     }
 
     render() {
@@ -32,7 +32,7 @@ class MovieListing extends JSXComponent {
     }
 }
 
-MovieListing.PROPS = {
+MovieOption.PROPS = {
     movie: {
         value: null
     },
@@ -41,4 +41,4 @@ MovieListing.PROPS = {
     }
 };
 
-export default MovieListing;
+export default MovieOption;

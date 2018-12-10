@@ -1,6 +1,5 @@
 import JSXComponent from 'metal-jsx';
 import MovieSelector from "./MovieSelector";
-import MovieOverview from './MovieOverview';
 
 import TMDB from './models/tmdb';
 
@@ -26,7 +25,6 @@ class MovieStep extends JSXComponent {
                 <div class="movie-step">
                     <div class="movie-step__overview">
                         <h2>What do you want to watch?</h2>
-                        <button class="button" type="submit" disabled={selectedMovieIndex === null}>Pick a date</button>
                     </div>
                     <div class="movie-step__selection">
                         <MovieSelector 
