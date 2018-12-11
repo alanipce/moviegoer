@@ -1,5 +1,6 @@
 import JSXComponent from "metal-jsx";
 
+import FeaturedMovieOverview from './FeaturedMovieOverview';
 import MultiStepIndicator from './MultiStepIndicator';
 import MovieStep from './MovieStep';
 import DateStep from "./DateStep";
@@ -27,6 +28,7 @@ class App extends JSXComponent {
                     {/* <MultiStepIndicator steps={steps} currentStep={currentStep} /> */}
                 </header>
                 <main>
+                    <FeaturedMovieOverview />
                     {/* {(currentStep === MOVIE_STEP) && 
                         <MovieStep
                             events={{movieSelected: this.handleMovieSelected}} />
