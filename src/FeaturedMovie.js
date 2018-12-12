@@ -5,9 +5,11 @@ class FeaturedMovie extends JSXComponent {
         const {movie} = this.props;
         
         return (
-            <button class="featured-movie" style={{backgroundImage: `url(${movie.artworkUrl})`}}>
-                {movie.title}
-            </button>
+            <div class={`featured-movie${movie.isRecommended? ' recommended' : ''}`}>
+                <button class="featured-movie__button" style={{backgroundImage: `url(${movie.artworkUrl})`}}>
+                    {movie.title}
+                </button>
+            </div>
         );
     }
 }

@@ -330,7 +330,7 @@ ol.multistep {
     align-items: center;
 }
 
-.featured-movie {
+.featured-movie__button {
     display: block;
     position: relative;
     border: none;
@@ -349,13 +349,13 @@ ol.multistep {
     font-size: 1.2rem;
 }
 
-.featured-movie.recommended {
+.featured-movie.recommended .featured-movie__button{
     width: 200px;
     height: 200px;
 }
 
 /* Box Shadow as separate element to animate at 60fps */
-.featured-movie::before {
+.featured-movie__button::before {
     content: '';
     display: block;
     position: absolute;
@@ -372,7 +372,7 @@ ol.multistep {
     transform: translateZ(-1em);
 }
 
-.featured-movie:hover, .featured-movie:focus-within {
+.featured-movie__button:hover, .featured-movie__button:focus-within {
     transform: scale(1.2);
     color: #FFF;
     text-shadow: 0 1px 0 black;
