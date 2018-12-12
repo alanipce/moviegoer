@@ -1,18 +1,16 @@
 import JSXComponent from "metal-jsx";
 
-import FeaturedMovieOverview from './FeaturedMovieOverview';
 import MultiStepIndicator from './MultiStepIndicator';
 import MovieStep from './MovieStep';
 import DateStep from "./DateStep";
 
-import "./app.scss";
 import ShowtimeStep from "./ShowtimeStep";
 
 const MOVIE_STEP = 0;
 const DATE_STEP = 1;
 const SHOWTIME_STEP = 2;
 
-class App extends JSXComponent {
+class FormApp extends JSXComponent {
     created() {
         this.handleMovieSelected = this.handleMovieSelected.bind(this);
         this.handleDateSelected = this.handleDateSelected.bind(this);
@@ -25,11 +23,10 @@ class App extends JSXComponent {
             <div class="container">
                 <header>
                     <h1>moviegoer</h1>
-                    {/* <MultiStepIndicator steps={steps} currentStep={currentStep} /> */}
+                    <MultiStepIndicator steps={steps} currentStep={currentStep} />
                 </header>
                 <main>
-                    <FeaturedMovieOverview />
-                    {/* {(currentStep === MOVIE_STEP) && 
+                    {(currentStep === MOVIE_STEP) && 
                         <MovieStep
                             events={{movieSelected: this.handleMovieSelected}} />
                     }
@@ -40,7 +37,7 @@ class App extends JSXComponent {
                     {(currentStep === SHOWTIME_STEP) &&
                         <ShowtimeStep movie={selectedMovie}
                             date={selectedDate}/>
-                    } */}
+                    }
                 </main>
             </div>
         );
@@ -65,7 +62,7 @@ class App extends JSXComponent {
     }
 }
 
-App.STATE = {
+FormApp.STATE = {
     selectedMovie: {
         value: null
     },
@@ -90,5 +87,5 @@ App.STATE = {
     }
 };
 
-export {App};
-export default App;
+export {FormApp};
+export default FormApp;
