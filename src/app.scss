@@ -400,10 +400,12 @@ ol.multistep {
 .modal__content {
     order: 2;
     width: 100%;
-    max-width: 600px;
+    max-width: 750px;
     padding: 20px;
     background: #FFF;
     color: #000;
+    overflow: auto;
+    margin: 30px 0;
 }
 
 .modal__backdrop {
@@ -433,9 +435,10 @@ ol.multistep {
     width: 40px;
     height: 40px;
     border: 0;
-    margin: 30px;
+    margin: 0px 30px;
     background: transparent;
     opacity: 0.5;
+    margin-top: 20px;
 }
 
 .modal__dismiss-button::before {
@@ -460,4 +463,28 @@ ol.multistep {
     transform: translate(-50%, -50%) rotate(-45deg);
     border-radius: 5px;
     background: #FFF;
+}
+
+/* Undo modal content margin for edge to edge presentation */
+.modal__content .hero {
+    margin: -20px -20px 20px; 
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 510px;
+    background: #eee;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero__title {
+    margin: 20px;
+    font-size: 50px;
+    font-weight: 900;
+    color: #FFF;
+    text-shadow: 0 1px 0 black;
 }

@@ -1,5 +1,5 @@
 import JSXComponent from 'metal-jsx';
-import MovieSummary from './MovieSummary';
+import MovieListing from './MovieListing';
 
 import ModalCoordinator from './utility/modal';
 
@@ -13,7 +13,7 @@ class FeaturedMovie extends JSXComponent {
         
         return (
             <div class={`featured-movie${movie.isRecommended? ' recommended' : ''}`}>
-                <button data-onclick={this.handleClick} class="featured-movie__button" style={{backgroundImage: `url(${movie.artworkUrl})`}}>
+                <button data-onclick={this.handleClick} class="featured-movie__button" style={{backgroundImage: `url(${movie.previewArtworkUrl})`}}>
                     {movie.title}
                 </button>
             </div>
@@ -22,7 +22,7 @@ class FeaturedMovie extends JSXComponent {
 
     handleClick(e) {
         console.log("clicked featured movie component.");
-        ModalCoordinator.showModal(<MovieSummary movie={this.props.movie} />);
+        ModalCoordinator.showModal(<MovieListing movie={this.props.movie} />);
     }
 }
 

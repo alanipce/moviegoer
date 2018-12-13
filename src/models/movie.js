@@ -15,15 +15,22 @@ function determineRecommendation(releaseDate, voteAverage) {
     }
 }
 
-function Movie(title, overview, artworkUrl, releaseDate, voteAverage) {
+function Movie(title, overview, releaseDate, voteAverage) {
     this.title = title;
     this.overview = overview;
-    this.artworkUrl = artworkUrl;
     this.releaseDate = moment(releaseDate);
     this.voteAverage = voteAverage;
 
     this.isRecommended = determineRecommendation(this.releaseDate, this.voteAverage);
 }
+
+Movie.prototype.setPreviewArtworkUrl = function (artworkUrl) {
+    this.previewArtworkUrl = artworkUrl;
+};
+
+Movie.prototype.setHeroArtworkUrl = function (artworkUrl) {
+    this.heroArtworkUrl = artworkUrl;
+};
 
 export {Movie};
 export default Movie;

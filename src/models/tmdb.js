@@ -17,6 +17,11 @@ const RELEASE_TYPE_DIGITAL = 4;
 const RELEASE_TYPE_PHYSICAL = 5;
 const RELEASE_TYPE_TV = 6;
 
+// Image asset size classes
+const IMAGE_SIZE_SMALLEST = -1;
+const IMAGE_SIZE_LARGEST = -2;
+const IMAGE_SIZE_ORIGINAL = -3;
+
 const TMDb = {
     fetchTheatricalReleases: function () {
         const afterDate = moment().subtract(2, 'weeks');
@@ -29,13 +34,14 @@ const TMDb = {
         };
 
         const fetchMoviesPromise = _get("/discover/movie", movieFilterOptions);
-        const fetchBackdropConfigUrlPromise = _fetchBackdropResourceBaseUrl();
+        const fetchConfiguration = _fetchConfiguration();
 
-        return Promise.all([fetchMoviesPromise, fetchBackdropConfigUrlPromise])
+        return Promise.all([fetchMoviesPromise, fetchConfiguration])
             .then((values) => {
                 const json = values[0];
-                const backdropResourceBaseUrl = values[1];
+                const configuration = values[1];
 
+                console.log(configuration);
                 return json.results.map((movieJSON) => {
                     const {
                         title,
@@ -45,10 +51,21 @@ const TMDb = {
                         vote_average: voteAverage
                     } = movieJSON;
 
-                    const artworkUrl = (backdropPath) ? buildUrl(backdropResourceBaseUrl, backdropPath) : null;
+                    const previewArtworkUrl = _buildBackdropResourceUrl(configuration, IMAGE_SIZE_SMALLEST, backdropPath);
+                    const heroArtworkUrl = _buildBackdropResourceUrl(configuration, IMAGE_SIZE_LARGEST, backdropPath);
+            
+                    const movie =  new Movie(title, overview, releaseDate, voteAverage);
 
-                    return new Movie(title, overview, artworkUrl, releaseDate, voteAverage);
-                })
+                    if (previewArtworkUrl) {
+                        movie.setPreviewArtworkUrl(previewArtworkUrl);
+                    }
+
+                    if (heroArtworkUrl) {
+                        movie.setHeroArtworkUrl(heroArtworkUrl);
+                    }
+
+                    return movie;
+                });
             });
     },
     
@@ -68,27 +85,42 @@ function _buildApiUrl(path, params) {
     return buildUrl(API_BASE_URL, path, Object.assign({}, params, {"api_key": API_KEY}));
 }
 
-function _fetchBackdropResourceBaseUrl() {
-    if (config === null) {
-        return _configure().then(_buildBackdropResourceBaseUrl);
-    } else {
-        return Promise.resolve(_buildBackdropResourceBaseUrl(config));
+function _buildBackdropResourceUrl(configuration, sizeClass, path) {
+    if (!path) {
+        return null;
     }
-}
-function _buildBackdropResourceBaseUrl(configuration) {
+
     const baseUrl = configuration.images.base_url;
-    const size = configuration.images.backdrop_sizes[0];
+    let sizeIndex = 0;
 
-    return `${baseUrl}/${size}`;
+    if (sizeClass === IMAGE_SIZE_SMALLEST) {
+        sizeIndex = 0;
+    } else if (sizeClass === IMAGE_SIZE_LARGEST) {
+        sizeIndex = Math.floor(configuration.images.backdrop_sizes.length - 2, 0);
+    } else if (sizeClass === IMAGE_SIZE_ORIGINAL) {
+        sizeIndex = Math.floor(configuration.images.backdrop_sizes.length - 1, 0);
+    }
+     else {
+        sizeIndex = sizeClass;
+    }
+    
+    const size = configuration.images.backdrop_sizes[sizeIndex];
+
+    return buildUrl(baseUrl, `${size}/${path}`);
 }
 
-function _configure() {
-    return fetch(_buildApiUrl("/configuration"))
+function _fetchConfiguration() {
+    if (config === null) {
+        return fetch(_buildApiUrl("/configuration"))
             .then((resp) => resp.json())
             .then((json) => {
                 config = json;
                 return config;
             });
+    } else {
+        return Promise.resolve(config);
+    }
+    
 }
 
 export default TMDb;
