@@ -20,11 +20,11 @@ class DiscoveryApp extends JSXComponent {
         const {currentModalComponent} = this.state;
 
         return (
-            <div class="container">
+            <div>
                 <header>
                     <h1>moviegoer</h1>
                 </header>
-                <main>
+                <main class="container">
                     <FeaturedMovieOverview />
                 </main>
                 <div class={`modal${currentModalComponent != null? ' modal--visible' : ''}`}>
