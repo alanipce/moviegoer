@@ -1,7 +1,7 @@
 import JSXComponent from 'metal-jsx';
 
 import FeaturedMovieOverview from './FeaturedMovieOverview';
-import ModalCoordiantor from './utility/modal';
+import ModalCoordinator from './utility/modal';
 
 class DiscoveryApp extends JSXComponent {
     created() {
@@ -9,11 +9,11 @@ class DiscoveryApp extends JSXComponent {
         this.dismissModal = this.dismissModal.bind(this);
     }
     attached() {
-        ModalCoordiantor.registerPresenter(this.showModal, this.dismissModal);
+        ModalCoordinator.registerPresenter(this.showModal, this.dismissModal);
     }
 
     willDetach() {
-        ModalCoordiantor.unregisterPresenter();
+        ModalCoordinator.unregisterPresenter();
     }
 
     render() {
@@ -27,11 +27,13 @@ class DiscoveryApp extends JSXComponent {
                 <main>
                     <FeaturedMovieOverview />
                 </main>
-                {currentModalComponent &&
-                    <div class="modal">
+                <div class={`modal${currentModalComponent != null? ' modal--visible' : ''}`}>
+                    <button class="modal__dismiss-button" data-onclick={this.dismissModal}></button>
+                    <div class="modal__content">
                         {currentModalComponent}
                     </div>
-                }
+                    <div class="modal__backdrop" data-onclick={this.dismissModal}></div>
+                </div>
             </div>
         );
     }
@@ -43,6 +45,7 @@ class DiscoveryApp extends JSXComponent {
 
     dismissModal() {
         console.log("dismissing modal component...");
+        this.state.currentModalComponent = null;
     }
 }
 
