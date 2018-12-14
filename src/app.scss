@@ -471,6 +471,7 @@ ol.multistep {
 }
 
 .hero {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -481,10 +482,22 @@ ol.multistep {
     background-size: cover;
 }
 
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.2;
+}
+
 .hero__title {
     margin: 20px;
     font-size: 50px;
     font-weight: 900;
     color: #FFF;
     text-shadow: 0 1px 0 black;
+    z-index: 10;
 }
