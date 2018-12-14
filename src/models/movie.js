@@ -15,7 +15,8 @@ function determineRecommendation(releaseDate, voteAverage) {
     }
 }
 
-function Movie(title, overview, releaseDate, voteAverage) {
+function Movie(id, title, overview, releaseDate, voteAverage) {
+    this.id = id;
     this.title = title;
     this.overview = overview;
     this.releaseDate = moment(releaseDate);

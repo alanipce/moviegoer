@@ -44,6 +44,7 @@ const TMDb = {
                 console.log(configuration);
                 return json.results.map((movieJSON) => {
                     const {
+                        id,
                         title,
                         overview,
                         backdrop_path: backdropPath, 
@@ -54,7 +55,7 @@ const TMDb = {
                     const previewArtworkUrl = _buildBackdropResourceUrl(configuration, IMAGE_SIZE_SMALLEST, backdropPath);
                     const heroArtworkUrl = _buildBackdropResourceUrl(configuration, IMAGE_SIZE_LARGEST, backdropPath);
             
-                    const movie =  new Movie(title, overview, releaseDate, voteAverage);
+                    const movie =  new Movie(id, title, overview, releaseDate, voteAverage);
 
                     if (previewArtworkUrl) {
                         movie.setPreviewArtworkUrl(previewArtworkUrl);

@@ -2,6 +2,10 @@ import JSXComponent from 'metal-jsx';
 import MovieSummary from './MovieSummary';
 
 class MovieListing extends JSXComponent {
+    attached() {
+        console.log(this.props.movie.id);
+    }
+
     render() {
         const {movie} = this.props;
 
