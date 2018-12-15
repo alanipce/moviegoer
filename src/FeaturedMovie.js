@@ -1,7 +1,4 @@
 import JSXComponent from 'metal-jsx';
-import MovieListing from './MovieListing';
-
-import ModalCoordinator from './utility/modal';
 
 class FeaturedMovie extends JSXComponent {
     created() {
@@ -21,8 +18,7 @@ class FeaturedMovie extends JSXComponent {
     }
 
     handleClick(e) {
-        console.log("clicked featured movie component.");
-        ModalCoordinator.showModal(<MovieListing movie={this.props.movie} />);
+        this.emit('movieSelected', {movie: this.props.movie});
     }
 }
 

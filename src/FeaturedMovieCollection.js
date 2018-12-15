@@ -1,9 +1,16 @@
 import JSXComponent from 'metal-jsx';
 
-import TMDd from './models/tmdb';
+import MovieListing from './MovieListing';
 import FeaturedMovie from './FeaturedMovie';
 
+import TMDd from './models/tmdb';
+import ModalCoordinator from './utility/modal';
+
 class FeaturedMovieCollection extends JSXComponent {
+    created() {
+        this.handleSelectedMovie = this.handleSelectedMovie.bind(this);
+    }
+
     async attached() {
         this.state.movies = await TMDd.fetchTheatricalReleases();
     }
@@ -17,9 +24,14 @@ class FeaturedMovieCollection extends JSXComponent {
 
         return (
             <div class="featured-movie-overview">
-                {movies.map((m) => <FeaturedMovie movie={m} />)}  
+                {movies.map((m) => <FeaturedMovie movie={m} events={{movieSelected: this.handleSelectedMovie}} />)}  
             </div>
         );
+    }
+
+    handleSelectedMovie(payload) {
+        console.log("selected movie from collection...");
+        ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
     }
 }
 
