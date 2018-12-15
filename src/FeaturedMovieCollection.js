@@ -3,7 +3,7 @@ import JSXComponent from 'metal-jsx';
 import TMDd from './models/tmdb';
 import FeaturedMovie from './FeaturedMovie';
 
-class FeaturedMovieOverview extends JSXComponent {
+class FeaturedMovieCollection extends JSXComponent {
     async attached() {
         this.state.movies = await TMDd.fetchTheatricalReleases();
     }
@@ -23,10 +23,10 @@ class FeaturedMovieOverview extends JSXComponent {
     }
 }
 
-FeaturedMovieOverview.STATE = {
+FeaturedMovieCollection.STATE = {
     movies: {
         value: null
     }
 }
 
-export default FeaturedMovieOverview;
+export default FeaturedMovieCollection;

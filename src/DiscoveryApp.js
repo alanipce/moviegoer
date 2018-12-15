@@ -1,6 +1,6 @@
 import JSXComponent from 'metal-jsx';
 
-import FeaturedMovieOverview from './FeaturedMovieOverview';
+import FeaturedMovieCollection from './FeaturedMovieCollection';
 import ModalCoordinator from './utility/modal';
 
 class DiscoveryApp extends JSXComponent {
@@ -25,7 +25,7 @@ class DiscoveryApp extends JSXComponent {
                     <h1>moviegoer</h1>
                 </header>
                 <main class="container">
-                    <FeaturedMovieOverview />
+                    <FeaturedMovieCollection />
                 </main>
                 <div class={`modal${currentModalComponent != null? ' modal--visible' : ''}`}>
                     <button class="modal__dismiss-button" data-onclick={this.dismissModal}></button>
