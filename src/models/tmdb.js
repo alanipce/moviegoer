@@ -1,4 +1,5 @@
 import Movie from './movie';
+import MovieDetails from './MovieDetails';
 import {buildUrl} from '../utility/network';
 
 import moment from 'moment';
@@ -69,7 +70,23 @@ const TMDb = {
                 });
             });
     },
-    
+    fetchMovieDetails: function (movieId) {
+        return _get(`/movie/${movieId}`).then(function (json) {
+            const {
+                runtime,
+                genres,
+                imdb_id: imdbId,
+                tagline
+            } = json;
+
+
+            const genresStringArray = genres.map((g) => g.name);
+            const movieDetails = new MovieDetails(runtime, genresStringArray, tagline, imdbId);
+
+            console.log(movieDetails);
+            return movieDetails;
+        });
+    }
 };
 
 function _get(path, params) {

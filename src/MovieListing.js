@@ -1,9 +1,11 @@
 import JSXComponent from 'metal-jsx';
 import MovieSummary from './MovieSummary';
 
+import TMDb from './models/tmdb';
+
 class MovieListing extends JSXComponent {
     attached() {
-        console.log(this.props.movie.id);
+        TMDb.fetchMovieDetails(this.props.movie.id);
     }
 
     render() {
