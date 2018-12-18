@@ -6,6 +6,11 @@ $step-indicator-complete-color: #5cb85c;
 $step-indicator-current-color: darkgray;
 $step-container-width: $step-indicator-diameter + 20px;
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
     font-size: 16px;
@@ -381,6 +386,12 @@ ol.multistep {
         transform: translate3d(0,  12px, -1em);
         opacity: 0.2;
     }
+}
+
+.app--modal-open {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .modal {

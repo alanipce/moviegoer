@@ -18,16 +18,17 @@ class DiscoveryApp extends JSXComponent {
 
     render() {
         const {currentModalComponent} = this.state;
+        const isModalOpen = this.state.currentModalComponent != null;
 
         return (
-            <div>
+            <div class={`${isModalOpen? 'app--modal-open' : ''}`}>
                 <header>
                     <h1>moviegoer</h1>
                 </header>
                 <main class="container">
                     <FeaturedMovieCollection />
                 </main>
-                <div class={`modal${currentModalComponent != null? ' modal--visible' : ''}`}>
+                <div class={`modal${isModalOpen? ' modal--visible' : ''}`}>
                     <button class="modal__dismiss-button" data-onclick={this.dismissModal}></button>
                     <div class="modal__content">
                         {currentModalComponent}
