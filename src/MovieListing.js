@@ -1,5 +1,5 @@
 import JSXComponent from 'metal-jsx';
-import MovieSummary from './MovieSummary';
+import MovieRuntime from './MovieRuntime';
 
 class MovieListing extends JSXComponent {
     render() {
@@ -17,7 +17,7 @@ class MovieListing extends JSXComponent {
                         <div class="movie-overview">
                             <div class="movie-overview__tagline">{movie.details.tagline}</div>
                             <div class="movie-overview__metadata">
-                                <div class="movie-overview__runtime">{movie.details.runtime}</div>
+                                <div class="movie-overview__runtime"><MovieRuntime minutes={movie.details.runtime} /></div>
                                 <div class="movie-overview__genres">{movie.details.genres.join("|")}</div>
                             </div>
                             <div class="movie-overview__summary">
