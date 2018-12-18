@@ -30,11 +30,23 @@ class FeaturedMovieCollection extends JSXComponent {
     }
 
     async handleSelectedMovie(payload) {
-        console.log("selected movie from collection...");
+        // render modal with basic movie with no details
         ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
 
         const movieDetails = await TMDb.fetchMovieDetails(payload.movie.id);
-        console.log(movieDetails);
+        
+        // update state to update movie with details
+        this.state.movies.map((m) => {
+            if (m.id === payload.movie.id) {
+                m.setDetails(movieDetails);
+                console.log(m);
+            }
+
+            return m;
+        });
+
+        // re-render the modal with new movie
+        ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
     }
 }
 

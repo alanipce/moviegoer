@@ -23,6 +23,10 @@ function Movie(id, title, overview, releaseDate, voteAverage) {
     this.voteAverage = voteAverage;
 
     this.isRecommended = determineRecommendation(this.releaseDate, this.voteAverage);
+
+    this.previewArtworkUrl = null;
+    this.heroArtworkUrl = null;
+    this.details = null;
 }
 
 Movie.prototype.setPreviewArtworkUrl = function (artworkUrl) {
@@ -31,6 +35,10 @@ Movie.prototype.setPreviewArtworkUrl = function (artworkUrl) {
 
 Movie.prototype.setHeroArtworkUrl = function (artworkUrl) {
     this.heroArtworkUrl = artworkUrl;
+};
+
+Movie.prototype.setDetails = function (details) {
+    this.details = details;
 };
 
 export {Movie};
