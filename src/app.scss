@@ -401,7 +401,6 @@ ol.multistep {
     order: 2;
     width: 100%;
     max-width: 750px;
-    padding: 20px;
     background: #FFF;
     color: #000;
     overflow: auto;
@@ -463,11 +462,6 @@ ol.multistep {
     transform: translate(-50%, -50%) rotate(-45deg);
     border-radius: 5px;
     background: #FFF;
-}
-
-/* Undo modal content margin for edge to edge presentation of sections */
-.modal__content .movie-listing__section {
-    margin: -20px -20px 0; 
 }
 
 .hero {

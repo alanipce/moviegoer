@@ -12,7 +12,20 @@ class MovieListing extends JSXComponent {
                         <h2 class="hero__title">{movie.title}</h2>
                     </div>
                 </section>
-                <MovieSummary movie={movie} />
+                <section class="movie-listing__section">
+                    {movie.details &&
+                        <div class="movie-overview">
+                            <div class="movie-overview__tagline">{movie.details.tagline}</div>
+                            <div class="movie-overview__metadata">
+                                <div class="movie-overview__runtime">{movie.details.runtime}</div>
+                                <div class="movie-overview__genres">{movie.details.genres.join("|")}</div>
+                            </div>
+                            <div class="movie-overview__summary">
+                                {movie.overview}
+                            </div>
+                        </div>
+                    }
+                </section>
             </div>
         );
     }
