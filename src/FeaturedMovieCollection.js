@@ -3,7 +3,7 @@ import JSXComponent from 'metal-jsx';
 import MovieListing from './MovieListing';
 import FeaturedMovie from './FeaturedMovie';
 
-import TMDd from './models/tmdb';
+import TMDb from './models/tmdb';
 import ModalCoordinator from './utility/modal';
 
 class FeaturedMovieCollection extends JSXComponent {
@@ -12,7 +12,7 @@ class FeaturedMovieCollection extends JSXComponent {
     }
 
     async attached() {
-        this.state.movies = await TMDd.fetchTheatricalReleases();
+        this.state.movies = await TMDb.fetchTheatricalReleases();
     }
     
     render() {
@@ -29,9 +29,12 @@ class FeaturedMovieCollection extends JSXComponent {
         );
     }
 
-    handleSelectedMovie(payload) {
+    async handleSelectedMovie(payload) {
         console.log("selected movie from collection...");
         ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
+
+        const movieDetails = await TMDb.fetchMovieDetails(payload.movie.id);
+        console.log(movieDetails);
     }
 }
 

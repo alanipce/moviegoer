@@ -83,7 +83,6 @@ const TMDb = {
             const genresStringArray = genres.map((g) => g.name);
             const movieDetails = new MovieDetails(runtime, genresStringArray, tagline, imdbId);
 
-            console.log(movieDetails);
             return movieDetails;
         });
     }
