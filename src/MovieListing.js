@@ -6,9 +6,11 @@ class MovieListing extends JSXComponent {
         const {movie} = this.props;
 
         return (
-            <div>
-                <section class="hero" style={{backgroundImage: `url(${movie.heroArtworkUrl})`}}>
-                    <h2 class="hero__title">{movie.title}</h2>
+            <div class="movie-listing">
+                <section class="movie-listing__section">
+                    <div class="hero" style={{backgroundImage: `url(${movie.heroArtworkUrl})`}}>
+                        <h2 class="hero__title">{movie.title}</h2>
+                    </div>
                 </section>
                 <MovieSummary movie={movie} />
             </div>

@@ -465,9 +465,9 @@ ol.multistep {
     background: #FFF;
 }
 
-/* Undo modal content margin for edge to edge presentation */
-.modal__content .hero {
-    margin: -20px -20px 20px; 
+/* Undo modal content margin for edge to edge presentation of sections */
+.modal__content .movie-listing__section {
+    margin: -20px -20px 0; 
 }
 
 .hero {
