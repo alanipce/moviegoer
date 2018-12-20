@@ -475,6 +475,7 @@ ol.multistep {
     background: #FFF;
 }
 
+/* Modal Listing component styles */
 .hero {
     position: relative;
     display: flex;
@@ -505,4 +506,28 @@ ol.multistep {
     color: #FFF;
     text-shadow: 0 1px 0 black;
     z-index: 10;
+}
+
+.movie-overview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 40px 30px;
+}
+
+
+.movie-overview__metadata {
+    min-width: 125px;
+    margin-right: 40px;
+}
+
+.movie-overview__runtime {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.movie-overview__tagline {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 30px;
 }
