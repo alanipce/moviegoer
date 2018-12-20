@@ -400,22 +400,17 @@ ol.multistep {
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     visibility: hidden;
     opacity: 0;
     transition: opacity 300ms ease-in;
 }
 
 .modal__content {
-    order: 2;
     width: 100%;
-    max-width: 750px;
+    height: 100%;
     background: #FFF;
     color: #000;
     overflow: auto;
-    margin: 30px 0;
 }
 
 .modal__backdrop {
@@ -439,16 +434,15 @@ ol.multistep {
 }
 
 .modal__dismiss-button {
-    position: relative;
-    order: 1;
-    align-self: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 30px;
     width: 40px;
     height: 40px;
     border: 0;
-    margin: 0px 30px;
     background: transparent;
     opacity: 0.5;
-    margin-top: 20px;
+    z-index: 10;
 }
 
 .modal__dismiss-button::before {
@@ -476,6 +470,14 @@ ol.multistep {
 }
 
 /* Modal Listing component styles */
+.movie-listing-section {
+    padding: 50px 20px;
+}
+
+.movie-listing-section--no-padding {
+    padding: 0;
+}
+
 .hero {
     position: relative;
     display: flex;
@@ -512,7 +514,6 @@ ol.multistep {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 40px 30px;
 }
 
 
