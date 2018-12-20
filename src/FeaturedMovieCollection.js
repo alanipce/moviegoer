@@ -23,7 +23,7 @@ class FeaturedMovieCollection extends JSXComponent {
         }
 
         return (
-            <div class="featured-movie-overview">
+            <div class="featured-movie-collection">
                 {movies.map((m) => <FeaturedMovie movie={m} events={{movieSelected: this.handleSelectedMovie}} />)}  
             </div>
         );
