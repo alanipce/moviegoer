@@ -417,24 +417,9 @@ ol.multistep {
     overflow: auto;
 }
 
-.modal__backdrop {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #000;
-    opacity: 0;
-    z-index: -1;
-}
-
 .modal--visible {
     visibility: visible;
     opacity: 1;
-}
-.modal--visible .modal__backdrop {
-    opacity: 0.4;
 }
 
 .modal__dismiss-button {
@@ -472,6 +457,40 @@ ol.multistep {
     border-radius: 5px;
     background: #FFF;
 }
+/* Box Office component styles */
+.box-office {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.box-office__content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX( -50%);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 1000px;
+    background: #FFF;
+    color: #000;
+}
+
+.box-office__backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.4;
+    z-index: -1;
+}
+
 
 /* Modal Listing component styles */
 .movie-listing-section {
