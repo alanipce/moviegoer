@@ -2,6 +2,10 @@ import JSXComponent from 'metal-jsx';
 import MovieRuntime from './MovieRuntime';
 
 class MovieListing extends JSXComponent {
+    created() {
+        this.handlePurchaseAction = this.handlePurchaseAction.bind(this);
+    }
+
     render() {
         const {movie} = this.props;
 
@@ -10,6 +14,9 @@ class MovieListing extends JSXComponent {
                 <section class="movie-listing-section movie-listing-section--no-padding">
                     <div class="hero" style={{backgroundImage: `url(${movie.heroArtworkUrl})`}}>
                         <h2 class="hero__title">{movie.title}</h2>
+                        <div class="hero__actions">
+                            <button class="button button--rounded" data-onclick={this.handlePurchaseAction}>Purchase Tickets</button>
+                        </div>
                     </div>
                 </section>
                 {movie.details &&
@@ -32,6 +39,10 @@ class MovieListing extends JSXComponent {
                 }
             </div>
         );
+    }
+
+    handlePurchaseAction() {
+        this.emit('purchaseInitiated', {movie: this.props.movie});
     }
 }
 

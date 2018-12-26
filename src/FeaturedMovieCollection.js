@@ -9,6 +9,7 @@ import ModalCoordinator from './utility/modal';
 class FeaturedMovieCollection extends JSXComponent {
     created() {
         this.handleSelectedMovie = this.handleSelectedMovie.bind(this);
+        this.handleInitiatedPurchase = this.handleInitiatedPurchase.bind(this);
     }
 
     async attached() {
@@ -31,7 +32,7 @@ class FeaturedMovieCollection extends JSXComponent {
 
     async handleSelectedMovie(payload) {
         // render modal with basic movie with no details
-        ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
+        ModalCoordinator.showModal(<MovieListing movie={payload.movie} events={{purchaseInitiated: this.handleInitiatedPurchase}} />);
 
         const movieDetails = await TMDb.fetchMovieDetails(payload.movie.id);
         
@@ -46,7 +47,11 @@ class FeaturedMovieCollection extends JSXComponent {
         });
 
         // re-render the modal with new movie
-        ModalCoordinator.showModal(<MovieListing movie={payload.movie} />);
+        ModalCoordinator.showModal(<MovieListing movie={payload.movie} events={{purchaseInitiated: this.handleInitiatedPurchase}} />);
+    }
+
+    handleInitiatedPurchase(payload) {
+        this.emit('purchaseInitiated', payload);
     }
 }
 

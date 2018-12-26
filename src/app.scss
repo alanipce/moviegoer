@@ -224,6 +224,10 @@ ol.multistep {
     background: darken($color: #65D1B7, $amount: 20%);
 }
 
+.button--rounded {
+    border-radius: 30px;
+}
+
 .movie-selector {
     display: flex;
     flex-wrap: wrap;
@@ -483,6 +487,8 @@ ol.multistep {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem;
     height: 510px;
     background: #eee;
     background-repeat: no-repeat;
@@ -502,11 +508,15 @@ ol.multistep {
 }
 
 .hero__title {
-    margin: 20px;
+    margin: 20px 0;
     font-size: 50px;
     font-weight: 900;
     color: #FFF;
     text-shadow: 0 1px 0 black;
+    z-index: 10;
+}
+
+.hero__actions {
     z-index: 10;
 }
 

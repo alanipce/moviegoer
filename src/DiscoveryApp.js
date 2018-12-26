@@ -7,6 +7,7 @@ class DiscoveryApp extends JSXComponent {
     created() {
         this.showModal = this.showModal.bind(this);
         this.dismissModal = this.dismissModal.bind(this);
+        this.handleInitiatedPurchase = this.handleInitiatedPurchase.bind(this);
     }
     attached() {
         ModalCoordinator.registerPresenter(this.showModal, this.dismissModal);
@@ -26,7 +27,7 @@ class DiscoveryApp extends JSXComponent {
                     <h1>moviegoer</h1>
                 </header>
                 <main class="container">
-                    <FeaturedMovieCollection />
+                    <FeaturedMovieCollection events={{purchaseInitiated: this.handleInitiatedPurchase}} />
                 </main>
                 <div class={`modal${isModalOpen? ' modal--visible' : ''}`}>
                     <button class="modal__dismiss-button" data-onclick={this.dismissModal}></button>
@@ -47,6 +48,10 @@ class DiscoveryApp extends JSXComponent {
     dismissModal() {
         console.log("dismissing modal component...");
         this.state.currentModalComponent = null;
+    }
+
+    handleInitiatedPurchase(payload) {
+        console.log('purchase intiated', payload.movie);
     }
 }
 
